@@ -69,4 +69,5 @@ public class User {
     public String toString() {
         return  "id=" + id + ", email=" + email + ", name=" + name + ", username =" + username + '}';
     }
+/* ok */
 }
