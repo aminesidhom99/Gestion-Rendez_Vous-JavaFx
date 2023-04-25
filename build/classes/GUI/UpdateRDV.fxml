@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdateRDVController">
+    <children>
+         <Label layoutX="2.0" layoutY="122.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="datedebut" />
+      <Label layoutX="16.0" layoutY="170.0" prefHeight="42.0" prefWidth="106.0" stylesheets="@list.css" text="datefin" />
+       <Label layoutX="14.0" layoutY="229.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="type" />
+      <Label layoutX="8.0" layoutY="280.0" prefHeight="42.0" prefWidth="106.0" stylesheets="@list.css" text="categorie" />
+            <Button layoutX="69.0" layoutY="364.0" mnemonicParsing="false" onAction="#modifier" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: green; -fx-background-radius: 30;" stylesheets="@list.css" text="Modifier" textFill="WHITE">
+ <effect>
+            <Blend />
+         </effect>
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Button>    
+          <Label layoutX="28.0" layoutY="77.0" prefHeight="34.0" prefWidth="240.0" text="Modifier Covoiturage" textFill="#2b2e2f">
+              <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+       <ScrollPane layoutX="284.0" layoutY="110.0" prefHeight="491.0" prefWidth="683.0">
+         <content>
+            <VBox fx:id="vb" prefHeight="513.0" prefWidth="658.0" />
+         </content>
+      </ScrollPane>
+                <ChoiceBox fx:id="choixType" layoutX="61.0" layoutY="288.0" prefHeight="25.0" prefWidth="122.0" />
+      <ChoiceBox fx:id="choixcat" layoutX="61.0" layoutY="234.0" prefHeight="25.0" prefWidth="122.0" />
+      <DatePicker fx:id="datedebut" layoutX="61.0" layoutY="127.0" prefHeight="25.0" prefWidth="122.0" />
+      <DatePicker fx:id="datefin" layoutX="61.0" layoutY="178.0" prefHeight="25.0" prefWidth="122.0" />
+      <Label layoutX="291.0" layoutY="86.0" text="patient" />
+      <Label layoutX="364.0" layoutY="86.0" text="docteur" />
+      <Label layoutX="460.0" layoutY="86.0" text="date debut" />
+      <Label layoutX="626.0" layoutY="86.0" text="date fin" />
+      <Label layoutX="753.0" layoutY="86.0" text="type" />
+      <Label layoutX="889.0" layoutY="86.0" text="categorie" />
+      </children>
+     
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/Utils/Main.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/UpdateRDV.fxml</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/ABCController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/DoctorsController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/AffichageTypeController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/Services/ServiceRednezVous.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/SupprimerReservationController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/ChoixBoxController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/Test/Main.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/Entities/Appointment.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/testbd/TestBD.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/gestionrdv/NewFXMain.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/StatController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/ModifierTypeController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/ALOController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/Stat.fxml</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/AjoutrendezVousController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/ChoixBox.fxml</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/SupprimerTypeController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/AppointmentAddController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/Utils/DataSource.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/Utils/Mail.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/TestController.java</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/ModifierType.fxml</file>
+            <file>file:/C:/Users/amine/OneDrive/Documents/NetBeansProjects/GestionRDV/src/GUI/UpdateRDVController.java</file>
+        </group>
+    </open-files>
+</project-private>
