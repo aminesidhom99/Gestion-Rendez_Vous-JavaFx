@@ -110,7 +110,14 @@ public class AjoutrendezVousController implements Initializable {
     
   
    
-    
+     @FXML
+    private void goback(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/ajoutrendezVous.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     
     
     

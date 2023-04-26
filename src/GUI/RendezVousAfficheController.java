@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +24,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.Pdf;
 
 /**
  * FXML Controller class
@@ -71,35 +75,57 @@ HBox column1 = new HBox();
             System.out.println(ex);
         }
         ///////////////////////////////////////////////user
-        for (Appointment d : l) {
+     for (Appointment d : l) {
+    HBox hbox = new HBox(10);
+    hbox.setPadding(new Insets(10));
+    hbox.setStyle("-fx-background-color: #fffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
-        
-            HBox hbox = new HBox();
-            Label label1 = new Label(d.getUser().getName());
-            Label label2 = new Label(d.getDoctor().getName());
-            Label label3 = new Label(d.getAppointment_date().toString());
-            Label label4 = new Label(d.getDatefin().toString());
-            
-Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
-       //     label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+    Label label1 = new Label(d.getUser().getName());
+    label1.setWrapText(true);
+    label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label1.setPrefWidth(100);
 
-/////////////////////////////////////////////////
-          
-            Label label7 = new Label(d.getCategorie());
-           hbox.setStyle("  -fx-background-color: #67e860;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-          //  label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-         //   label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-           //             label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            //label5.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+    Label label2 = new Label(d.getDoctor().getName());
+    label2.setWrapText(true);
+    label2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label2.setPrefWidth(100);
 
-         //   label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-       //     label4.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true;-fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            hbox.getChildren().addAll(label1, label2, label3, label4 , label5,label7);
-            hbox.setSpacing(120);
-            hbox.setAlignment(Pos.CENTER_LEFT);
+    Label label3 = new Label(d.getAppointment_date().toString());
+    label3.setWrapText(true);
+    label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label3.setPrefWidth(100);
+
+    Label label4 = new Label(d.getDatefin().toString());
+    label4.setWrapText(true);
+    label4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label4.setPrefWidth(100);
+
+    Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
+    label5.setWrapText(true);
+    label5.setPrefWidth(200);
+    label5.setMinWidth(Region.USE_PREF_SIZE);
+    label5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label5.setPrefWidth(100);
+
+    Label label7 = new Label(d.getCategorie());
+    label7.setWrapText(true);
+    label7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label7.setPrefWidth(100);
+    
+     hbox.getChildren().addAll(label1, label2, label3, label4, label5, label7);
+    hbox.setSpacing(120);
+    hbox.setAlignment(Pos.CENTER_LEFT);
+     hbox.setAlignment(Pos.CENTER_LEFT);
+    //hbox.setPadding(new Insets(10));
+    vb.getChildren().add(hbox);
+    
+    
+          //  hbox.getChildren().addAll(label1, label2, label3, label4 , label5,label7);
+         //   hbox.setSpacing(120);
+           // hbox.setAlignment(Pos.CENTER_LEFT);
           //  hbox.setPadding(new Insets(10));
 
-            vb.getChildren().add(hbox);
+       //   vb.getChildren().add(hbox);
         }
 
     }
@@ -259,6 +285,19 @@ Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
     @FXML
     private void trier(ActionEvent event) {
     }
+
+    
+        @FXML
+    private void pdf(ActionEvent event) {
+                     Pdf pd=new Pdf();
+        try{
+        pd.GeneratePdf("Liste des Réservation");
+            System.out.println("impression done");
+        } catch (Exception ex) {
+            Logger.getLogger(ServiceRednezVous.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
 }
 
 

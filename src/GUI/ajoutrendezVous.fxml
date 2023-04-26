@@ -5,28 +5,32 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutrendezVousController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutrendezVousController">
    <children>
-      <ImageView fx:id="tftypeselection" fitHeight="536.0" fitWidth="1113.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/back_1.png" />
-                      
-
+      <ImageView fitHeight="573.0" fitWidth="848.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../Ressource/Back2.jpg" />
          </image>
-         
-         <effect>
-            <Glow />
-         </effect>
       </ImageView>
-      <Label layoutX="575.0" layoutY="170.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="description" />
-      <Label layoutX="135.0" layoutY="167.0" prefHeight="42.0" prefWidth="114.0" stylesheets="@list.css" text="nom du type" />
-      <Button layoutX="457.0" layoutY="279.0" mnemonicParsing="false" onAction="#ajouterCov" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: green; -fx-background-radius: 30;" stylesheets="@list.css" text="ajouter" textFill="WHITE">
+      <Label layoutX="36.0" layoutY="284.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="description">
+         <font>
+            <Font name="Eras Medium ITC" size="18.0" />
+         </font></Label>
+      <Label layoutX="36.0" layoutY="189.0" prefHeight="42.0" prefWidth="114.0" stylesheets="@list.css" text="nom du type">
+         <font>
+            <Font name="Eras Medium ITC" size="18.0" />
+         </font></Label>
+            <Button layoutX="683.0" layoutY="494.0" mnemonicParsing="false" onAction="#goback" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B8E7E1;" stylesheets="@list.css" text="Annuler" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+
+      <Button layoutX="139.0" layoutY="421.0" mnemonicParsing="false" onAction="#ajouterCov" prefHeight="49.0" prefWidth="285.0" style="-fx-background-radius: 30; -fx-background-color: #B8E7E1;" stylesheets="@list.css" text="ajouter" textFill="RED">
          <effect>
             <Blend>
                <topInput>
@@ -38,29 +42,17 @@
                </topInput></Blend>
          </effect>
          <font>
-            <Font name="Calibri Bold Italic" size="16.0" />
+            <Font name="HP Simplified Hans Light" size="26.0" />
          </font></Button>
-      <Button layoutX="23.0" layoutY="482.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="mes rendez vous" textFill="WHITE">
+      <Label layoutX="36.0" layoutY="41.0" prefHeight="62.0" prefWidth="436.0" text="Ajouter un Type" textAlignment="CENTER" textFill="#bc5c5c">
          <font>
-            <Font name="System Bold Italic" size="11.0" />
-         </font></Button>
-      <Button layoutX="174.0" layoutY="482.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Modifier Rendez Vous " textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="11.0" />
-         </font></Button>
-      <Button layoutX="334.0" layoutY="482.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Confirmer" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Button>
-      <Label layoutX="339.0" layoutY="41.0" prefHeight="62.0" prefWidth="436.0" text="Ajouter un Rendez Vous" textAlignment="CENTER" textFill="#21282c">
-         <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Consolas" size="30.0" />
          </font>
          <effect>
             <Bloom threshold="0.81" />
          </effect>
       </Label>
-      <TextField fx:id="tftype" layoutX="271.0" layoutY="175.0" text="" />
-      <TextField fx:id="tfcategorie" layoutX="716.0" layoutY="175.0" text="" />
+      <TextField fx:id="tftype" layoutX="207.0" layoutY="197.0" style="-fx-background-radius: 200;" text="" />
+      <TextField fx:id="tfcategorie" layoutX="189.0" layoutY="283.0" prefHeight="72.0" prefWidth="202.0" text="" />
    </children>
 </AnchorPane>

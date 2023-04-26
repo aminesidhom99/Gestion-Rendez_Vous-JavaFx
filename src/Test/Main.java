@@ -15,6 +15,7 @@ import Services.ServicetypeRDV;
 //import ch.qos.logback.core.CoreConstants;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,8 +37,10 @@ public class Main {
                User user = new User("nom", "prenom", "abbes525@gmail.com", 2);
               Doctor doctor = new Doctor(2, "prenom", "abbes525@gmail.com", "specialite");
               Typeappoinment typeAppointment = new Typeappoinment(1,"aaa", "consultation");
+LocalDateTime dateTime = LocalDateTime.of(2023, 2, 16, 14, 30);
+Timestamp timestamp = Timestamp.valueOf(dateTime);
 
-Appointment appointment = new Appointment(82, user, doctor, typeAppointment,java.sql.Date.valueOf("2023-02-16"),java.sql.Date.valueOf("2025-02-16"), "eeeee", false);
+Appointment appointment = new Appointment(82, user, doctor, typeAppointment,dateTime,java.sql.Date.valueOf("2025-02-16"), "eeeee", false);
 
 
    

@@ -183,7 +183,7 @@ if ( a == 0 ) {
        
 
             Actualiser();
-            JOptionPane.showMessageDialog(null, "covoiturage modifie");
+            JOptionPane.showMessageDialog(null, "type modifie");
             tftype.clear();
                         tfdesc.clear();
          
@@ -299,7 +299,7 @@ try {
     } 
 
     private void goreserv(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml")) ; 
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/reserver.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

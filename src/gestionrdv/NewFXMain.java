@@ -13,7 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
+/** 
  *
  * @author amine
  */
@@ -22,7 +22,7 @@ public class NewFXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root  = FXMLLoader.load(getClass().getResource("../GUI/ajoutrendezVous.fxml"));
+            Parent root  = FXMLLoader.load(getClass().getResource("../GUI/UpdateRDV.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Rendez vous crud");

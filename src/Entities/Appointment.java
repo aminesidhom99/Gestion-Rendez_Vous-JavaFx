@@ -2,6 +2,7 @@ package Entities;
 
 import Entities.User;
 import java.sql.Date;
+import java.time.LocalDateTime;
 //import java.time.LocalDate;
 //import java.time.LocalDateTime;
 
@@ -10,12 +11,13 @@ public class Appointment {
     private User user;
     private Doctor doctor;
     private Typeappoinment type;
-    private Date appointment_date;
+   // private Date appointment_date;
     private Date datefin;
     private String categorie;
     private boolean approved;
+    private LocalDateTime appointment_date;
 
-    public Appointment(int id, User user, Doctor doctor, Typeappoinment type, Date appointment_date, Date datefin, String categorie, boolean approved) {
+    public Appointment(int id, User user, Doctor doctor, Typeappoinment type, LocalDateTime appointment_date, Date datefin, String categorie, boolean approved) {
         this.id = id;
         this.user = user;
         this.doctor = doctor;
@@ -35,7 +37,7 @@ public class Appointment {
         this.approved = approved;
     }
 
-    public Appointment(int id, Typeappoinment type, Date appointment_date, Date datefin, String categorie) {
+    public Appointment(int id, Typeappoinment type, LocalDateTime appointment_date, Date datefin, String categorie) {
         this.id = id;
         this.type = type;
         this.appointment_date = appointment_date;
@@ -87,11 +89,11 @@ public class Appointment {
         this.type = type;
     }
 
-    public Date getAppointment_date() {
+    public LocalDateTime getAppointment_date() {
         return appointment_date;
     }
 
-    public void setAppointment_date(Date appointment_date) {
+    public void setAppointment_date(LocalDateTime appointment_date) {
         this.appointment_date = appointment_date;
     }
 

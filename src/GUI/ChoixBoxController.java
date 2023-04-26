@@ -15,6 +15,9 @@ import Services.ServicetypeRDV;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +30,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
+import com.jfoenix.controls.JFXTimePicker;
 
 /**
  * FXML Controller class
@@ -46,6 +50,8 @@ public class ChoixBoxController implements Initializable {
     private DatePicker datedebut;
     @FXML
     private DatePicker datefin;
+    @FXML
+    private JFXTimePicker time;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,7 +116,7 @@ choixcat.setOnAction(event -> {
         sp.ajouter_reservation_cov(p);*/
         Typeappoinment selectedType = choixType.getSelectionModel().getSelectedItem();
     String selectedMode = choixcat.getSelectionModel().getSelectedItem();
-    Date selectedStartDate = Date.valueOf(datedebut.getValue());
+    //Date selectedStartDate = Date.valueOf(datedebut.getValue());
     Date selectedEndDate = Date.valueOf(datefin.getValue());
      Appointment appointment = new Appointment();
      User user = new User("nom", "prenom", "abbes525@gmail.com", 2);
@@ -119,7 +125,11 @@ choixcat.setOnAction(event -> {
     appointment.setDoctor(new Doctor(idDocteur));
     appointment.setType(selectedType);
     appointment.setCategorie(selectedMode);
-    appointment.setAppointment_date(selectedStartDate);
+     LocalDate date = datedebut.getValue();
+        LocalTime heure = time.getValue();
+        LocalDateTime dateHeure = LocalDateTime.of(date, heure);
+        appointment.setAppointment_date(dateHeure);
+   // appointment.setAppointment_date(selectedStartDate);
     appointment.setDatefin(selectedEndDate);
     appointment.setApproved(false);
      ServiceRednezVous service = new ServiceRednezVous();

@@ -12,42 +12,55 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RendezVousAfficheController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RendezVousAfficheController">
    <children>
-      <ImageView fitHeight="531.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
+       <ImageView fitHeight="540.0" fitWidth="856.0" layoutY="-5.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/back_1.png" />
+            <Image url="@../Ressource/doctorr.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="button" layoutX="638.0" layoutY="480.0" mnemonicParsing="false" onAction="#trier" prefHeight="39.0" prefWidth="157.0" stylesheets="@list.css" text="trier par nom" />
+      <Button fx:id="button" layoutX="638.0" layoutY="480.0" mnemonicParsing="false" onAction="#trier" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="trier par nom" />
       <Text layoutX="607.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #24d31e;" stylesheets="@list.css" text="Modifier une réservation ">
+      <Button layoutX="25.0" layoutY="26.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="Modifier une réservation ">
          <effect>
             <Blend />
          </effect>
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font></Button>
-      <Button layoutX="184.0" layoutY="13.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #24d31e;" stylesheets="@list.css" text="Ajouter réservation">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Button>
-      <Button layoutX="504.0" layoutY="478.0" mnemonicParsing="false" onAction="#actualiser" prefHeight="39.0" prefWidth="118.0" stylesheets="@list.css" text="Actualiser" />
-      <ScrollPane layoutX="53.0" layoutY="149.0" prefHeight="306.0" prefWidth="1500.0">
+      <Button layoutX="504.0" layoutY="478.0" mnemonicParsing="false" onAction="#actualiser" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="Actualiser" />
+      <ScrollPane layoutX="25.0" layoutY="141.0" prefHeight="325.0" prefWidth="819.0">
          <content>
-            <VBox fx:id="vb" prefHeight="290.0" prefWidth="1500.0" />
+         <VBox fx:id="vb" prefHeight="324.0" prefWidth="819.0" />
          </content>
       </ScrollPane>
-     <Label layoutX="106.0" layoutY="116.0" stylesheets="@list.css" text="Nom du type " />
-      <Label layoutX="229.0" layoutY="116.0" stylesheets="@list.css" text="Description" />
-      <Label layoutX="281.0" layoutY="67.0" prefHeight="34.0" prefWidth="283.0" text="Liste des RendezVous" textFill="#090a0a">
+      <Label layoutX="268.0" layoutY="36.0" prefHeight="35.0" prefWidth="333.0" text="Liste des RendezVous" textFill="#23b2b2">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="Britannic Bold" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="540.0" layoutY="116.0" stylesheets="@list.css" text="Type" />
-      <TextField fx:id="rech" layoutX="642.0" layoutY="72.0" />
+      <Label layoutX="540.0" layoutY="116.0" stylesheets="@list.css" />
+      <TextField fx:id="rech" layoutX="606.0" layoutY="91.0" prefHeight="25.0" prefWidth="222.0" style="-fx-background-radius: 200;" />
+      <Button layoutX="685.0" layoutY="26.0" mnemonicParsing="false" onAction="#pdf" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #F6FFDE;" text="Export to PDF" />
+      <Label layoutX="25.0" layoutY="114.0" stylesheets="@list.css" text="Docteur" textFill="#fccaca">
+         <font>
+            <Font name="Castellar" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="133.0" layoutY="114.0" stylesheets="@list.css" text="Date Rendez Vous" textFill="#fccaca">
+         <font>
+            <Font name="Castellar" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="345.0" layoutY="114.0" prefHeight="22.0" prefWidth="63.0" stylesheets="@list.css" text="type" textFill="#fccaca">
+         <font>
+            <Font name="Castellar" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="428.0" layoutY="114.0" stylesheets="@list.css" text="categorie" textFill="#fccaca">
+         <font>
+            <Font name="Castellar" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
-

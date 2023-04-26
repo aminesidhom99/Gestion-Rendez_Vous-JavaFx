@@ -53,7 +53,10 @@ public class ServiceRednezVous implements IServiceRendezVous<Appointment>{
         pre.setInt(1, c.getId());
         pre.setInt(2, c.getUser().getId());
         pre.setInt(3, c.getDoctor().getId());
-        pre.setDate(4,c.getAppointment_date());
+        
+      //  pre.setDate(4,c.getAppointment_date());
+         Timestamp timestamp = Timestamp.valueOf(c.getAppointment_date());
+            pre.setTimestamp(4, timestamp);
         pre.setDate(5,c.getDatefin());
       
         pre.setInt(6, c.getType().getId());
@@ -80,7 +83,11 @@ public class ServiceRednezVous implements IServiceRendezVous<Appointment>{
     while (res.next()) {
         Appointment appointment = new Appointment();
       appointment.setId(res.getInt("id"));
-      appointment.setAppointment_date(res.getDate("appointment_date"));
+  //   appointment.setAppointment_date(res.getDate("appointment_date"));
+  Timestamp timestamp = res.getTimestamp("appointment_date");
+LocalDateTime dateTime = timestamp.toLocalDateTime();
+appointment.setAppointment_date(dateTime);
+
         appointment.setDatefin(res.getDate("datefin"));
         appointment.setCategorie(res.getString("categorie"));
         appointment.setApproved(false);
@@ -122,7 +129,11 @@ public void update(Appointment c) throws SQLException {
 
     pre.setInt(1, c.getUser().getId());
     pre.setInt(2, c.getDoctor().getId());
-    pre.setDate(3,c.getAppointment_date());
+    Timestamp timestamp = Timestamp.valueOf(c.getAppointment_date());
+            pre.setTimestamp(3, timestamp);
+   // pre.setLocalDateTime(3,c.getAppointment_date());
+pre.setTimestamp(3, timestamp);
+
         pre.setDate(4,c.getDatefin());
     pre.setInt(5, c.getType().getId());
     pre.setString(6, c.getCategorie());

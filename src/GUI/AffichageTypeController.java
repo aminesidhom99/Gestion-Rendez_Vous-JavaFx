@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,7 +52,7 @@ HBox column1 = new HBox();
     public void initialize(URL url, ResourceBundle rb) {
          rech.textProperty().addListener((observable, oldValue, newValue) -> {
         try {
-            filterCovoiturages(newValue);
+            filter(newValue);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -86,7 +87,7 @@ HBox column1 = new HBox();
 /////////////////////////////////////////////////
           
            
-           hbox.setStyle("  -fx-background-color: #67e860;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
+           hbox.setStyle("   -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
           //  label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
          //   label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
            //             label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
@@ -197,7 +198,7 @@ HBox column1 = new HBox();
 
     }
     
-    private void filterCovoiturages(String searchValue) throws SQLException {
+    private void filter(String searchValue) throws SQLException {
     vb.getChildren().clear(); // Clear the VBox to remove all previous entries
 
     ServicetypeRDV ser = new ServicetypeRDV();
@@ -248,9 +249,3 @@ HBox column1 = new HBox();
         stage.show();
     }
 }
-
-
-
-
-// problem dans ll affichage de tri 
-// chnager vbox to tableview 

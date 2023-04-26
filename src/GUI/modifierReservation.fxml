@@ -29,7 +29,7 @@
          </font></Button>
       <ImageView fx:id="Image" fitHeight="150.0" fitWidth="200.0" layoutX="360.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
      
-      <Button layoutX="20.0" layoutY="577.0" mnemonicParsing="false"  prefHeight="42.0" prefWidth="174.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Ajout Covoiturage" textFill="WHITE">
+      <Button layoutX="20.0" layoutY="577.0" mnemonicParsing="false"  prefHeight="42.0" prefWidth="174.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="ajouter un Type" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
@@ -37,7 +37,7 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
-      <Label layoutX="28.0" layoutY="77.0" prefHeight="34.0" prefWidth="240.0" text="Modifier Covoiturage" textFill="#2b2e2f">
+      <Label layoutX="28.0" layoutY="77.0" prefHeight="34.0" prefWidth="240.0" text="Modifier Type" textFill="#2b2e2f">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
