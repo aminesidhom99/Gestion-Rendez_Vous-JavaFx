@@ -22,7 +22,7 @@ public class NewFXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root  = FXMLLoader.load(getClass().getResource("../GUI/UpdateRDV.fxml"));
+            Parent root  = FXMLLoader.load(getClass().getResource("../GUI/Welcome.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Rendez vous crud");

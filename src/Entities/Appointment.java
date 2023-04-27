@@ -55,6 +55,10 @@ public class Appointment {
     public Appointment(int a, User b, Doctor c, Date selectedStartDate, Date selectedEndDate, Typeappoinment selectedType, String selectedMode, boolean e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Appointment(int a, User b, Doctor c, Typeappoinment selectedType, LocalDateTime startDateTime, String selectedMode, boolean b0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 
     public int getId() {

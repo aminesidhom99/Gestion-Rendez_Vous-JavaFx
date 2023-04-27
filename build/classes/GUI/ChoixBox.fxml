@@ -17,30 +17,24 @@
             <Image url="@../Ressource/BGJava.jpg" />
          </image>
       </ImageView>
-      <ChoiceBox fx:id="choixType" layoutX="296.0" layoutY="262.0" prefHeight="25.0" prefWidth="206.0" />
-      <ChoiceBox fx:id="choixcat" layoutX="296.0" layoutY="422.0" prefHeight="25.0" prefWidth="206.0" />
-      <DatePicker fx:id="datedebut" layoutX="296.0" layoutY="337.0" prefHeight="25.0" prefWidth="206.0" />
-      <DatePicker fx:id="datefin" layoutX="301.0" layoutY="167.0" prefHeight="25.0" prefWidth="206.0" />
+      <ChoiceBox fx:id="choixType" layoutX="296.0" layoutY="152.0" prefHeight="25.0" prefWidth="206.0" />
+      <ChoiceBox fx:id="choixcat" layoutX="296.0" layoutY="312.0" prefHeight="25.0" prefWidth="206.0" />
+      <DatePicker fx:id="datedebut" layoutX="296.0" layoutY="227.0" prefHeight="25.0" prefWidth="206.0" />
       <Button layoutX="248.0" layoutY="512.0" mnemonicParsing="false" onAction="#ajouterRendezVous" prefHeight="45.0" prefWidth="313.0" style="-fx-background-color: A6D0DD;" text="Ajouter Un Rendez Vous" textFill="#e4531f">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="15.0" />
          </font></Button>
-      <Label alignment="TOP_RIGHT" layoutX="76.0" layoutY="339.0" style="-fx-background-color: #FDF7C3;" text="Date du Rendez Vous" textFill="#f50000">
+      <Label alignment="TOP_RIGHT" layoutX="76.0" layoutY="229.0" style="-fx-background-color: #FDF7C3;" text="Date du Rendez Vous" textFill="#f50000">
          <font>
             <Font name="Lucida Bright Italic" size="18.0" />
          </font>
       </Label>
-      <Label alignment="TOP_RIGHT" layoutX="76.0" layoutY="424.0" style="-fx-background-color: #FDF7C3;" text="Categorie" textFill="RED">
+      <Label alignment="TOP_RIGHT" layoutX="76.0" layoutY="314.0" style="-fx-background-color: #FDF7C3;" text="Categorie" textFill="RED">
          <font>
             <Font name="Lucida Bright Italic" size="18.0" />
          </font>
       </Label>
-      <Label alignment="TOP_RIGHT" layoutX="90.0" layoutY="180.0" style="-fx-background-color: #FDF7C3;" text="Date Fin " textFill="RED">
-         <font>
-            <Font name="Lucida Bright Italic" size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="TOP_RIGHT" layoutX="90.0" layoutY="264.0" style="-fx-background-color: #FDF7C3;" text="Type" textFill="RED">
+      <Label alignment="TOP_RIGHT" layoutX="90.0" layoutY="154.0" style="-fx-background-color: #FDF7C3;" text="Type" textFill="RED">
          <font>
             <Font name="Lucida Bright Italic" size="18.0" />
          </font>
@@ -50,6 +44,11 @@
             <Font name="Calisto MT" size="44.0" />
          </font>
       </Label>
-      <JFXTimePicker fx:id="time" layoutX="590.0" layoutY="465.0" />
+      <JFXTimePicker fx:id="time" layoutX="296.0" layoutY="395.0" prefHeight="25.0" prefWidth="206.0" />
+      <Label alignment="TOP_RIGHT" layoutX="71.0" layoutY="408.0" style="-fx-background-color: #FDF7C3;" text="Heure de Rendez Vous" textFill="RED">
+         <font>
+            <Font name="Lucida Bright Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

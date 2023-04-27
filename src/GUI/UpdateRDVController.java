@@ -44,11 +44,17 @@ import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -125,54 +131,52 @@ choixcat.getItems().addAll(modes);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-           vb.setSpacing(20);
-           vb.setSpacing(20);
+           vb.setSpacing(10);
+          
 
-vb.setAlignment(Pos.CENTER);
-vb.setSpacing(10);
 
 for (Appointment d : l) {
     HBox hbox = new HBox(10);
     hbox.setPadding(new Insets(10));
-    hbox.setStyle("-fx-background-color: #fffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
+   // hbox.setStyle("-fx-background-color: #fffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
     Label label1 = new Label(d.getUser().getName());
     label1.setWrapText(true);
-    label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   // label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label1.setPrefWidth(100);
 
     Label label2 = new Label(d.getDoctor().getName());
     label2.setWrapText(true);
-    label2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   // label2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label2.setPrefWidth(100);
 
     Label label3 = new Label(d.getAppointment_date().toString());
     label3.setWrapText(true);
-    label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   // label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label3.setPrefWidth(100);
 
     Label label4 = new Label(d.getDatefin().toString());
     label4.setWrapText(true);
-    label4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   // label4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label4.setPrefWidth(100);
 
     Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
     label5.setWrapText(true);
     label5.setPrefWidth(200);
     label5.setMinWidth(Region.USE_PREF_SIZE);
-    label5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+  //  label5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label5.setPrefWidth(100);
 
     Label label7 = new Label(d.getCategorie());
     label7.setWrapText(true);
-    label7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+  //  label7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label7.setPrefWidth(100);
 
     HBox iconsBox = new HBox(10); // contient les icônes de suppression et de modification
     iconsBox.setAlignment(Pos.CENTER_RIGHT);
     iconsBox.setPrefWidth(100);
 
-    FontAwesomeIconView modif = new FontAwesomeIconView(FontAwesomeIcon.ARROW_DOWN);
+    FontAwesomeIconView modif = new FontAwesomeIconView(FontAwesomeIcon.PENCIL);
     modif.setFill(Color.GREEN);
     modif.setGlyphSize(25);
     modif.setCursor(Cursor.HAND);
@@ -288,130 +292,7 @@ if ( a == 0 ) {
         }
     }
       public void Actualiser() {
-        // TODO
-         vb.getChildren().clear();
-           List<String> modes = new ArrayList<>();
-modes.add("En ligne");
-modes.add("Présentielle");
-choixcat.getItems().addAll(modes);
-
- ServicetypeRDV serviceTypeRDV = new ServicetypeRDV();
-
-        try {
-            types = serviceTypeRDV.readAll_reservation_cov();
-        } catch (SQLException ex) {
-            Logger.getLogger(ChoixBoxController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Ajout des noms des types dans la choiceBox
-        choixType.getItems().addAll(types);
-
-        // Définition de la façon dont les noms des types seront affichés dans la choiceBox
-        choixType.setConverter(new StringConverter<Typeappoinment>() {
-            public String toString(Typeappoinment type) {
-                return type.getNomtype();
-            }
-
-            public Typeappoinment fromString(String string) {
-                return choixType.getItems().stream().filter(type ->
-                        type.getNomtype().equals(string)).findFirst().orElse(null);
-            }
-        });
-        
-        
-          List<Appointment> l = new ArrayList<Appointment>();
-          ServiceRednezVous ser = new ServiceRednezVous();
-          try {
-            l = ser.readAll();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-           vb.setSpacing(20);
-            for (Appointment d : l) {
-
-        
-            HBox hbox = new HBox();
-            Label label1 = new Label(d.getUser().getName());
-            Label label2 = new Label(d.getDoctor().getName());
-            Label label3 = new Label(d.getAppointment_date().toString());
-            Label label4 = new Label(d.getDatefin().toString());
-            
-Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
-       //     label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
-
-/////////////////////////////////////////////////
-          
-            Label label7 = new Label(d.getCategorie());
-           hbox.setStyle("  -fx-background-color: #67e860;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-          //  label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-         //   label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-           //             label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            //label5.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-
-         //   label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-       //     label4.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true;-fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            
-                      Button button = new Button("modifier !");
-                                     button.setStyle("-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
-
-  button.setOnAction(event -> {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("info evenement ");
-                alert.setHeaderText(null);
-                 a = d.getId();
-                 b = d.getUser() ; 
-                 c = d.getDoctor() ; 
-                  datedebut.setValue(d.getAppointment_date().toLocalDate());
-             datefin.setValue(d.getDatefin().toLocalDate());
-   
-  
-
-     choixType.setOnAction(o -> {
-            Typeappoinment selectedType = choixType.getSelectionModel().getSelectedItem();
-            int selectedTypeId = selectedType.getId();
-            System.out.println("Type sélectionné : " + selectedType.getNomtype() + ", id : " + selectedTypeId);
-        });
-// tfnomtype.setText(String.valueOf(d.getNomtype()));
-   choixcat.setOnAction(o -> {
-    String selectedMode = choixcat.getSelectionModel().getSelectedItem();
-    System.out.println("Mode sélectionné : " + selectedMode);
-});
-
-
-                 });
-  
-  
-    Button button2 = new Button("Supprimer !");
-                                     button2.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
-
-button2.setOnAction(event -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("info evenement ");
-                alert.setHeaderText(null);
-
-
-try {
-                     ser.supprimer(d.getId());
-                      sendSms( "52505517","salut Votre  rendez vous chez "+ d.getDoctor().getName() +  " est annulé !") ;
-                     JOptionPane.showMessageDialog(null, "type supprimé");
-                 } catch (SQLException ex) {
-                     Logger.getLogger(AffichageTypeController.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                     hbox.getChildren().remove(hbox);
-                     
-                                    Actualiser();
-
-});
-                
-            hbox.getChildren().addAll(label1, label2,label3,label4,label5,label7, button , button2);
-            hbox.setSpacing(20);
-            hbox.setAlignment(Pos.CENTER_LEFT);
-            hbox.setPadding(new Insets(10));
-
-            vb.getChildren().add(hbox);
-        }
-               vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment: center;");
-
+      
 
     
     }    
@@ -429,6 +310,14 @@ try {
     System.out.println("Message sent: " + message.getSid());
   }
 
+      @FXML
+    private void goreserv(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/RendezVousAffiche.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
    
     
 }

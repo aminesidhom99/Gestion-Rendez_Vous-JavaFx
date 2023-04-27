@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdateRDVController">
+<AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdateRDVController">
     <children>
-         <ImageView fitHeight="768.0" fitWidth="1321.0" layoutX="-161.0" layoutY="-104.0" pickOnBounds="true">
+         <ImageView fitHeight="727.0" fitWidth="1253.0" layoutX="-152.0" layoutY="-96.0" pickOnBounds="true">
          <image>
             <Image url="@../Ressource/ok1.jpg" />
          </image>
@@ -36,7 +36,7 @@
          <font>
             <Font name="Bell MT" size="20.0" />
          </font></Label>
-            <Button layoutX="40.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifier" prefHeight="42.0" prefWidth="196.0" style="-fx-background-color: A6D0DD;" stylesheets="@list.css" text="Modifier">
+            <Button layoutX="59.0" layoutY="472.0" mnemonicParsing="false" onAction="#modifier" prefHeight="42.0" prefWidth="196.0" style="-fx-background-color: A6D0DD;" stylesheets="@list.css" text="Modifier">
  <effect>
             <Blend />
          </effect>
@@ -57,13 +57,52 @@
       <ChoiceBox fx:id="choixcat" layoutX="129.0" layoutY="267.0" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: FFF9DE;" />
       <DatePicker fx:id="datedebut" layoutX="129.0" layoutY="160.0" prefHeight="25.0" prefWidth="122.0" />
       <DatePicker fx:id="datefin" layoutX="129.0" layoutY="212.0" prefHeight="25.0" prefWidth="122.0" />
-      <Label layoutX="291.0" layoutY="86.0" text="patient" />
-      <Label layoutX="380.0" layoutY="86.0" text="type" />
-      <Label layoutX="483.0" layoutY="86.0" text="date debut" />
-      <Label layoutX="606.0" layoutY="86.0" text="date fin" />
-      <Label layoutX="833.0" layoutY="86.0" text="type" />
-      <Label layoutX="1006.0" layoutY="86.0" text="Actions" />
-      <JFXTimePicker fx:id="time" layoutX="88.0" layoutY="370.0" />
+      <Label layoutX="291.0" layoutY="74.0" text="patient" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="74.0" text="Doctor" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="520.0" layoutY="70.0" text="debut" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="666.0" layoutY="70.0" text=" fin" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="888.0" layoutY="70.0" text="type" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="997.0" layoutY="74.0" text="Actions" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <JFXTimePicker fx:id="time" defaultColor="#f83307" layoutX="90.0" layoutY="391.0" />
+      <Label layoutX="14.0" layoutY="383.0" prefHeight="42.0" prefWidth="106.0" stylesheets="@list.css" text="Temp">
+         <font>
+            <Font name="Bell MT" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="goreserv" layoutX="64.0" layoutY="577.0" mnemonicParsing="false" onAction="#goreserv" prefHeight="42.0" prefWidth="196.0" style="-fx-background-color: #F15A59;" text="Annuler" textFill="#140f0f">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="747.0" layoutY="70.0" text="categorie" textFill="#ff2f00">
+         <font>
+            <Font name="Brush Script MT Italic" size="19.0" />
+         </font>
+      </Label>
       </children>
      
 </AnchorPane>

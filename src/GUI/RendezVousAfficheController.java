@@ -32,7 +32,7 @@ import utils.Pdf;
 /**
  * FXML Controller class
  *
- * @author abbes
+ * @author amine
  */
 public class RendezVousAfficheController implements Initializable {
 
@@ -74,59 +74,52 @@ HBox column1 = new HBox();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        
+      
+
         ///////////////////////////////////////////////user
-     for (Appointment d : l) {
-    HBox hbox = new HBox(10);
-    hbox.setPadding(new Insets(10));
-    hbox.setStyle("-fx-background-color: #fffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
+   for (Appointment d : l) {
+    HBox hbox = new HBox(90); // Increase the spacing between labels
+    hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
+   //box.setStyle("-fx-background-color: #ffffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
-    Label label1 = new Label(d.getUser().getName());
+    Label label1 = new Label( d.getUser().getName()); // Add a prefix to the label text
     label1.setWrapText(true);
-    label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label1.setPrefWidth(100);
+  //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label1.setPrefWidth(200);
 
-    Label label2 = new Label(d.getDoctor().getName());
+    Label label2 = new Label( d.getDoctor().getName());
     label2.setWrapText(true);
-    label2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label2.setPrefWidth(100);
+   //abel2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label2.setPrefWidth(200);
 
-    Label label3 = new Label(d.getAppointment_date().toString());
+    Label label3 = new Label( d.getAppointment_date().toString());
     label3.setWrapText(true);
-    label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label3.setPrefWidth(100);
+  //label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label3.setPrefWidth(200);
 
-    Label label4 = new Label(d.getDatefin().toString());
+    Label label4 = new Label( d.getDatefin().toString());
     label4.setWrapText(true);
-    label4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label4.setPrefWidth(100);
+   //abel4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label4.setPrefWidth(200);
 
-    Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
+    Label label5 = new Label( String.valueOf(d.getType().getNomtype()));
     label5.setWrapText(true);
     label5.setPrefWidth(200);
     label5.setMinWidth(Region.USE_PREF_SIZE);
-    label5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label5.setPrefWidth(100);
+   //abel5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   
 
-    Label label7 = new Label(d.getCategorie());
+    Label label7 = new Label( d.getCategorie());
     label7.setWrapText(true);
-    label7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label7.setPrefWidth(100);
+   //abel7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label7.setPrefWidth(200);
     
-     hbox.getChildren().addAll(label1, label2, label3, label4, label5, label7);
-    hbox.setSpacing(120);
+    hbox.getChildren().addAll(label1, label2, label3, label4, label5, label7);
     hbox.setAlignment(Pos.CENTER_LEFT);
-     hbox.setAlignment(Pos.CENTER_LEFT);
-    //hbox.setPadding(new Insets(10));
     vb.getChildren().add(hbox);
-    
-    
-          //  hbox.getChildren().addAll(label1, label2, label3, label4 , label5,label7);
-         //   hbox.setSpacing(120);
-           // hbox.setAlignment(Pos.CENTER_LEFT);
-          //  hbox.setPadding(new Insets(10));
+}
 
-       //   vb.getChildren().add(hbox);
-        }
 
     }
 
@@ -184,47 +177,75 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
 
     @FXML
     private void actualiser(ActionEvent event) {
-        vb.getChildren().clear();
-  
+            rech.textProperty().addListener((observable, oldValue, newValue) -> {
+        try {
+            filterCovoiturages(newValue);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    });
+        
+     //    vb.getChildren().clear();
+//column1.getChildren().addAll(new Label("depart:"), new Label("destination:"), new Label("prix:"), new Label("nombre des personnes:"), 
+  //       new Label("date:"));
+    //   vb.getChildren().add(column1); 
+      //     column1.setStyle("  -fx-background-color: red;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
+ //column1.setSpacing(100);
+   //         column1.setAlignment(Pos.CENTER_LEFT);
 
-          List<Appointment> l = new ArrayList<Appointment>();
+
+        List<Appointment> l = new ArrayList<Appointment>();
         ServiceRednezVous ser = new ServiceRednezVous();
         try {
             l = ser.readAll();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        ///////////////////////////////////////////////user
-        for (Appointment d : l) {
-
         
-            HBox hbox = new HBox();
-            Label label1 = new Label(d.getUser().getName());
-            Label label2 = new Label(d.getDoctor().getName());
-            Label label3 = new Label(d.getAppointment_date().toString());
-            Label label4 = new Label(d.getDatefin().toString());
-  
-Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
-       //     label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+      
 
-/////////////////////////////////////////////////
-          
-            Label label7 = new Label(d.getCategorie());
-           hbox.setStyle("  -fx-background-color: #67e860;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-          //  label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-         //   label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-           //             label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            //label5.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+        ///////////////////////////////////////////////user
+   for (Appointment d : l) {
+    HBox hbox = new HBox(90); // Increase the spacing between labels
+    hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
+   //box.setStyle("-fx-background-color: #ffffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
-         //   label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-       //     label4.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true;-fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            hbox.getChildren().addAll(label1, label2, label3, label4 , label5,label7);
-            hbox.setSpacing(120);
-            hbox.setAlignment(Pos.CENTER_LEFT);
-          //  hbox.setPadding(new Insets(10));
+    Label label1 = new Label( d.getUser().getName()); // Add a prefix to the label text
+    label1.setWrapText(true);
+  //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label1.setPrefWidth(200);
 
-            vb.getChildren().add(hbox);
-        }
+    Label label2 = new Label( d.getDoctor().getName());
+    label2.setWrapText(true);
+   //abel2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label2.setPrefWidth(200);
+
+    Label label3 = new Label( d.getAppointment_date().toString());
+    label3.setWrapText(true);
+  //label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label3.setPrefWidth(200);
+
+    Label label4 = new Label( d.getDatefin().toString());
+    label4.setWrapText(true);
+   //abel4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label4.setPrefWidth(200);
+
+    Label label5 = new Label( String.valueOf(d.getType().getNomtype()));
+    label5.setWrapText(true);
+    label5.setPrefWidth(200);
+    label5.setMinWidth(Region.USE_PREF_SIZE);
+   //abel5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   
+
+    Label label7 = new Label( d.getCategorie());
+    label7.setWrapText(true);
+   //abel7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label7.setPrefWidth(200);
+    
+    hbox.getChildren().addAll(label1, label2, label3, label4, label5, label7);
+    hbox.setAlignment(Pos.CENTER_LEFT);
+    vb.getChildren().add(hbox);
+}
 
     }
     
@@ -232,25 +253,49 @@ Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
     vb.getChildren().clear(); // Clear the VBox to remove all previous entries
 
     ServiceRednezVous ser = new ServiceRednezVous();
-    List<Appointment> covoiturages = ser.readAll();
+    List<Appointment> RDVE= ser.readAll();
 
-    for (Appointment covoiturage : covoiturages) {
-        if (covoiturage.getUser().getName().toLowerCase().contains(searchValue.toLowerCase())
-                || covoiturage.getDoctor().getName().toLowerCase().contains(searchValue.toLowerCase())) {
-            HBox hbox = new HBox();
-            Label label1 = new Label(covoiturage.getAppointment_date().toString());
-            Label label2 = new Label(covoiturage.getDatefin().toString());
-            Label label3 = new Label(String.valueOf(covoiturage.getType().getNomtype()));
-            Label label4 = new Label(String.valueOf(covoiturage.getCategorie()));
-           
+    for (Appointment RDV : RDVE) {
+        
+        if (RDV.getUser().getName().toLowerCase().contains(searchValue.toLowerCase())
+                || RDV.getDoctor().getName().toLowerCase().contains(searchValue.toLowerCase())) {
+           HBox hbox = new HBox(90); // Increase the spacing between labels
+    hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
+            Label label1 = new Label( RDV.getUser().getName()); // Add a prefix to the label text
+    label1.setWrapText(true);
+  //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label1.setPrefWidth(200);
 
-            hbox.setStyle("  -fx-background-color: #67e860;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
+    Label label2 = new Label( RDV.getDoctor().getName());
+    label2.setWrapText(true);
+   //abel2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label2.setPrefWidth(200);
 
-            hbox.getChildren().addAll(label1, label2, label3, label4 );
-            hbox.setSpacing(120);
-            hbox.setAlignment(Pos.CENTER_LEFT);
+    Label label3 = new Label( RDV.getAppointment_date().toString());
+    label3.setWrapText(true);
+  //label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label3.setPrefWidth(200);
 
-            vb.getChildren().add(hbox); // Add the HBox to the VBox
+    Label label4 = new Label( RDV.getDatefin().toString());
+    label4.setWrapText(true);
+   //abel4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label4.setPrefWidth(200);
+
+    Label label5 = new Label( String.valueOf(RDV.getType().getNomtype()));
+    label5.setWrapText(true);
+    label5.setPrefWidth(200);
+    label5.setMinWidth(Region.USE_PREF_SIZE);
+   //abel5.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+   
+
+    Label label7 = new Label( RDV.getCategorie());
+    label7.setWrapText(true);
+   //abel7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label7.setPrefWidth(200);
+    
+    hbox.getChildren().addAll(label1, label2, label3, label4, label5, label7);
+    hbox.setAlignment(Pos.CENTER_LEFT);
+    vb.getChildren().add(hbox);
         }
     }
 }
@@ -275,16 +320,13 @@ Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
     }
      @FXML
     private void gomodif(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("/GUI/modifierReservation.fxml")) ; 
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/UpdateRDV.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
 
-    @FXML
-    private void trier(ActionEvent event) {
-    }
 
     
         @FXML
@@ -296,6 +338,25 @@ Label label5 = new Label(String.valueOf(d.getType().getNomtype()));
         } catch (Exception ex) {
             Logger.getLogger(ServiceRednezVous.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+
+
+     @FXML
+    private void gostat(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/Stat.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void gohome(ActionEvent event) throws IOException {
+           Parent root = FXMLLoader.load(getClass().getResource("/GUI/Welcome.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

@@ -22,7 +22,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import Services.ServiceRednezVous;
+import java.io.IOException;
 import java.sql.SQLException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -82,5 +89,16 @@ public class StatController implements Initializable {
 
     public StatController() {
         barChart = createBarChart();
+    }
+
+    @FXML
+    private void goback(ActionEvent event) throws IOException {
+     
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/RendezVousAffiche.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    
     }
 }

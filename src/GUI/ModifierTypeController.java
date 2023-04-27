@@ -7,6 +7,8 @@ package GUI;
 
 import Entities.Typeappoinment;
 import Services.ServicetypeRDV;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -34,6 +36,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import javafx.scene.paint.Color;
+import javafx.scene.Cursor;
+import javafx.scene.layout.Priority;
 
 /**
  * FXML Controller class
@@ -77,33 +82,51 @@ public class ModifierTypeController implements Initializable {
         }
         ///////////////////////////////////////////////user
         vb.setSpacing(20);
+        vb.setSpacing(20);
+        //vb.setAlignment(Pos.CENTER);
+vb.setSpacing(10);
         for (Typeappoinment d : l) {
 
         
             HBox hbox = new HBox();
+             hbox.setPadding(new Insets(10));
+   // hbox.setStyle("-fx-background-color: #fffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
             Label label1 = new Label(d.getNomtype());
+            label1.setWrapText(true);
+    label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label1.setPrefWidth(200);
             Label label2 = new Label(d.getDescription());
+             label2.setWrapText(true);
+    label2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label2.setPrefWidth(400);
           
 
 /////////////////////////////////////////////////
           
            
-               hbox.setStyle("  -fx-background-color: #BDECB6;  -fx-padding:17;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-            label2.setStyle("-fx-font-size: 10px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+        /*    label2.setStyle("-fx-font-size: 10px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
             label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
                  
 
             label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            
+            */
+         HBox iconsBox = new HBox(10); // contient les icônes de suppression et de modification
+    iconsBox.setAlignment(Pos.CENTER_RIGHT);
+    iconsBox.setPrefWidth(100);
+    HBox.setHgrow(iconsBox, Priority.ALWAYS);
+
                       Button button = new Button("modifier !");
                                      button.setStyle("-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
-
-  button.setOnAction(event -> {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+  FontAwesomeIconView modif = new FontAwesomeIconView(FontAwesomeIcon.PENCIL);
+    modif.setFill(Color.GREEN);
+    modif.setGlyphSize(25);
+    modif.setCursor(Cursor.HAND);
+    modif.setOnMouseClicked(event -> {
+     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("info evenement ");
                 alert.setHeaderText(null);
- a = d.getId();
-                
+                 a = d.getId();
+                        
 
   
 
@@ -113,16 +136,18 @@ public class ModifierTypeController implements Initializable {
 
 
                  });
-  
-  
-    Button button2 = new Button("Supprimer !");
-                                     button2.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
-
-button2.setOnAction(event -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    FontAwesomeIconView supp = new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT);
+    supp.setFill(Color.RED);
+    supp.setGlyphSize(25);
+    supp.setCursor(Cursor.HAND);
+    supp.setOnMouseClicked(event -> {
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("info evenement ");
                 alert.setHeaderText(null);
 
+  
+   
+                 
 
 try {
                      ser.supprime_reservation_cov(d.getId());
@@ -136,17 +161,17 @@ try {
 
 });
                 
-            hbox.getChildren().addAll(label1, label2, button , button2);
-            hbox.setSpacing(20);
-            hbox.setAlignment(Pos.CENTER_LEFT);
-            hbox.setPadding(new Insets(10));
+          iconsBox.getChildren().addAll(modif, supp);
 
-            vb.getChildren().add(hbox);
-        }
-               vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment: center;");
+    hbox.getChildren().addAll(label1, label2, iconsBox);
+    hbox.setSpacing(20);
+    hbox.setAlignment(Pos.CENTER_LEFT);
+    hbox.setPadding(new Insets(10));
+    vb.getChildren().add(hbox);
+}
 
-
-    } 
+vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment:");
+    }   
 
     @FXML
     private void modifier(ActionEvent event) {
@@ -182,7 +207,7 @@ if ( a == 0 ) {
        
 
             Actualiser();
-            JOptionPane.showMessageDialog(null, "covoiturage modifie");
+            JOptionPane.showMessageDialog(null, "Type modifie");
             tftype.clear();
                         tfdesc.clear();
          
@@ -218,8 +243,10 @@ if ( a == 0 ) {
     }
 
     private void Actualiser() {
-        vb.getChildren().clear();
-          List<Typeappoinment> l = new ArrayList<Typeappoinment>();
+                 
+        
+      vb.getChildren().clear();
+        List<Typeappoinment> l = new ArrayList<Typeappoinment>();
         ServicetypeRDV ser = new ServicetypeRDV();
         try {
             l = ser.readAll_reservation_cov();
@@ -228,33 +255,51 @@ if ( a == 0 ) {
         }
         ///////////////////////////////////////////////user
         vb.setSpacing(20);
+        vb.setSpacing(20);
+        //vb.setAlignment(Pos.CENTER);
+vb.setSpacing(10);
         for (Typeappoinment d : l) {
 
         
             HBox hbox = new HBox();
+             hbox.setPadding(new Insets(10));
+   // hbox.setStyle("-fx-background-color: #fffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
             Label label1 = new Label(d.getNomtype());
+            label1.setWrapText(true);
+    label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label1.setPrefWidth(200);
             Label label2 = new Label(d.getDescription());
+             label2.setWrapText(true);
+    label2.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+    label2.setPrefWidth(400);
           
 
 /////////////////////////////////////////////////
           
            
-               hbox.setStyle("  -fx-background-color: #BDECB6;  -fx-padding:17;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-            label2.setStyle("-fx-font-size: 10px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+        /*    label2.setStyle("-fx-font-size: 10px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
             label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
                  
 
             label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            
+            */
+         HBox iconsBox = new HBox(10); // contient les icônes de suppression et de modification
+    iconsBox.setAlignment(Pos.CENTER_RIGHT);
+    iconsBox.setPrefWidth(100);
+    HBox.setHgrow(iconsBox, Priority.ALWAYS);
+
                       Button button = new Button("modifier !");
                                      button.setStyle("-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
-
-  button.setOnAction(event -> {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+  FontAwesomeIconView modif = new FontAwesomeIconView(FontAwesomeIcon.ARROW_DOWN);
+    modif.setFill(Color.GREEN);
+    modif.setGlyphSize(25);
+    modif.setCursor(Cursor.HAND);
+    modif.setOnMouseClicked(event -> {
+     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("info evenement ");
                 alert.setHeaderText(null);
- a = d.getId();
-                
+                 a = d.getId();
+                        
 
   
 
@@ -264,16 +309,18 @@ if ( a == 0 ) {
 
 
                  });
-  
-  
-    Button button2 = new Button("Supprimer !");
-                                     button2.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
-
-button2.setOnAction(event -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    FontAwesomeIconView supp = new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT);
+    supp.setFill(Color.RED);
+    supp.setGlyphSize(25);
+    supp.setCursor(Cursor.HAND);
+    supp.setOnMouseClicked(event -> {
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("info evenement ");
                 alert.setHeaderText(null);
 
+  
+   
+                 
 
 try {
                      ser.supprime_reservation_cov(d.getId());
@@ -287,24 +334,25 @@ try {
 
 });
                 
-            hbox.getChildren().addAll(label1, label2, button , button2);
-            hbox.setSpacing(20);
-            hbox.setAlignment(Pos.CENTER_LEFT);
-            hbox.setPadding(new Insets(10));
+          iconsBox.getChildren().addAll(modif, supp);
 
-            vb.getChildren().add(hbox);
-        }
-               vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment: center;");
+    hbox.getChildren().addAll(label1, label2, iconsBox);
+    hbox.setSpacing(20);
+    hbox.setAlignment(Pos.CENTER_LEFT);
+    hbox.setPadding(new Insets(10));
+    vb.getChildren().add(hbox);
+}
 
+vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment:");
     } 
 
     @FXML
     private void goreserv(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml")) ; 
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/AffichageType.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
-
+   
 }

@@ -31,6 +31,7 @@ import javafx.scene.control.DatePicker;
 import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXTimePicker;
+import java.sql.Timestamp;
 
 /**
  * FXML Controller class
@@ -117,7 +118,7 @@ choixcat.setOnAction(event -> {
         Typeappoinment selectedType = choixType.getSelectionModel().getSelectedItem();
     String selectedMode = choixcat.getSelectionModel().getSelectedItem();
     //Date selectedStartDate = Date.valueOf(datedebut.getValue());
-    Date selectedEndDate = Date.valueOf(datefin.getValue());
+//    Date selectedEndDate = Date.valueOf(datefin.getValue());
      Appointment appointment = new Appointment();
      User user = new User("nom", "prenom", "abbes525@gmail.com", 2);
      appointment.setUser(user);
@@ -125,12 +126,16 @@ choixcat.setOnAction(event -> {
     appointment.setDoctor(new Doctor(idDocteur));
     appointment.setType(selectedType);
     appointment.setCategorie(selectedMode);
+    
      LocalDate date = datedebut.getValue();
         LocalTime heure = time.getValue();
         LocalDateTime dateHeure = LocalDateTime.of(date, heure);
         appointment.setAppointment_date(dateHeure);
+      //  LocalDateTime datefin = dateHeure.plusMinutes(30);
+      //  Timestamp endTimestamp = Timestamp.valueOf(datefin);
+       // LocalDateTime endLocalDateTime = endTimestamp.toLocalDateTime();
    // appointment.setAppointment_date(selectedStartDate);
-    appointment.setDatefin(selectedEndDate);
+  //  appointment.setDatefin(endLocalDateTime);
     appointment.setApproved(false);
      ServiceRednezVous service = new ServiceRednezVous();
    // service.ajouter(appointment);

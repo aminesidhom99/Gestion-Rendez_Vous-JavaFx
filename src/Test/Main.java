@@ -40,7 +40,10 @@ public class Main {
 LocalDateTime dateTime = LocalDateTime.of(2023, 2, 16, 14, 30);
 Timestamp timestamp = Timestamp.valueOf(dateTime);
 
-Appointment appointment = new Appointment(82, user, doctor, typeAppointment,dateTime,java.sql.Date.valueOf("2025-02-16"), "eeeee", false);
+LocalDateTime datefin = LocalDateTime.of(2023, 2, 16, 14, 30);
+Timestamp time = Timestamp.valueOf(datefin);
+
+Appointment appointment = new Appointment(82, user, doctor, typeAppointment, "eeeee", false);
 
 
    

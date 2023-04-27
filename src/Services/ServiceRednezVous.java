@@ -57,7 +57,11 @@ public class ServiceRednezVous implements IServiceRendezVous<Appointment>{
       //  pre.setDate(4,c.getAppointment_date());
          Timestamp timestamp = Timestamp.valueOf(c.getAppointment_date());
             pre.setTimestamp(4, timestamp);
-        pre.setDate(5,c.getDatefin());
+       LocalDateTime datefin = c.getAppointment_date().plusMinutes(30);
+Timestamp datefinTimestamp = Timestamp.valueOf(datefin);
+
+// Utiliser la méthode setTimestamp() pour la colonne 4 et 5
+pre.setTimestamp(5, datefinTimestamp);
       
         pre.setInt(6, c.getType().getId());
         pre.setString(7, c.getCategorie());
@@ -87,6 +91,7 @@ public class ServiceRednezVous implements IServiceRendezVous<Appointment>{
   Timestamp timestamp = res.getTimestamp("appointment_date");
 LocalDateTime dateTime = timestamp.toLocalDateTime();
 appointment.setAppointment_date(dateTime);
+
 
         appointment.setDatefin(res.getDate("datefin"));
         appointment.setCategorie(res.getString("categorie"));
@@ -133,8 +138,8 @@ public void update(Appointment c) throws SQLException {
             pre.setTimestamp(3, timestamp);
    // pre.setLocalDateTime(3,c.getAppointment_date());
 pre.setTimestamp(3, timestamp);
-
-        pre.setDate(4,c.getDatefin());
+Timestamp time = Timestamp.valueOf(c.getAppointment_date());
+            pre.setTimestamp(4, time);
     pre.setInt(5, c.getType().getId());
     pre.setString(6, c.getCategorie());
     pre.setBoolean(7, c.isApproved());
