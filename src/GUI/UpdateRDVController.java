@@ -91,6 +91,8 @@ public class UpdateRDVController implements Initializable {
   public static final String AUTH_TOKEN = "f66e989f775e5d08aceafda1d4c730ae";
     @FXML
     private JFXTimePicker time;
+    @FXML
+    private Button goreserv;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -317,6 +319,16 @@ if ( a == 0 ) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void godoctors(ActionEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("/GUI/Doctors.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
     }
    
     

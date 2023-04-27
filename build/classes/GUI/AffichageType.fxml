@@ -21,14 +21,14 @@
       </ImageView>
       <Button fx:id="button" layoutX="803.0" layoutY="555.0" mnemonicParsing="false" onAction="#gohome" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="page principale" />
       <Text layoutX="607.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="Modifier un Type">
+      <Button layoutX="648.0" layoutY="17.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="Modifier un Type">
          <effect>
             <Blend />
          </effect>
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font></Button>
-      <Button layoutX="677.0" layoutY="14.0" mnemonicParsing="false" onAction="#goajout" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="Ajouter Type">
+      <Button layoutX="807.0" layoutY="17.0" mnemonicParsing="false" onAction="#goajout" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #F6FFDE;" stylesheets="@list.css" text="Ajouter Type">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>

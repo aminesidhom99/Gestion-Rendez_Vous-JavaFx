@@ -175,7 +175,35 @@ Timestamp time = Timestamp.valueOf(c.getAppointment_date());
 
 
 
+public List<Appointment> getAppointmentsByDoctorAndDate(int doctorId, LocalDateTime date) {
+    List<Appointment> appointments = new ArrayList<>();
 
+
+    try {
+      
+  
+      
+        String query = "SELECT * FROM appointment WHERE doctor_id = ? AND appointment_date = ?";
+        PreparedStatement pre=con.prepareStatement(query);
+        pre.setInt(1, doctorId);
+        pre.setTimestamp(2, Timestamp.valueOf(date));
+        ResultSet rs = pre.executeQuery();
+
+        while (rs.next()) {
+            Appointment appointment = new Appointment();
+            appointment.setId(rs.getInt("id"));
+            appointment.setAppointment_date(rs.getTimestamp("appointment_date").toLocalDateTime());
+            appointment.setApproved(rs.getBoolean("approved"));
+            // Set other properties here...
+
+            appointments.add(appointment);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return appointments;
+}
 
 
    /* @Override

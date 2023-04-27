@@ -50,5 +50,10 @@
             <Font name="Lucida Bright Italic" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="648.0" layoutY="509.0" mnemonicParsing="false" onAction="#goback" prefHeight="51.0" prefWidth="140.0" style="-fx-background-color: #F45050;" text="Retour">
+         <font>
+            <Font name="Lucida Sans Typewriter Regular" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

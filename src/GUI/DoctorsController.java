@@ -58,9 +58,7 @@ public class DoctorsController implements Initializable {
     private static int a;
     @FXML
     private ImageView Image;
-    @FXML
     private TextField tftype;
-    @FXML
     private TextField tfdesc;
    
    
@@ -183,7 +181,6 @@ vb.getChildren().add(hbox);
 
     } 
 
-    @FXML
     private void modifier(ActionEvent event) {
    
         ServicetypeRDV ser = new ServicetypeRDV();
@@ -231,7 +228,6 @@ if ( a == 0 ) {
     }
 
 
-     @FXML
     private void goajout(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/ajoutrendezVous.fxml")) ; 
         Scene scene = new Scene(root);
@@ -329,9 +325,17 @@ try {
 
     } 
 
-    @FXML
     private void goreserv(ActionEvent event) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goback(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/RendezVousAffiche.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

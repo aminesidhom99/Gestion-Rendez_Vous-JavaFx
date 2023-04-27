@@ -103,6 +103,14 @@
             <Font name="Brush Script MT Italic" size="19.0" />
          </font>
       </Label>
+      <Button layoutX="888.0" layoutY="14.0" mnemonicParsing="false" onAction="#godoctors" prefHeight="42.0" prefWidth="196.0" style="-fx-background-color: A6D0DD;" stylesheets="@list.css" text="Ajouter Rendez Vous">
+         <effect>
+            <Blend />
+         </effect>
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Button>
       </children>
      
 </AnchorPane>

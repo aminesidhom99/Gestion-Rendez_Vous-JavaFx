@@ -31,7 +31,13 @@ import javafx.scene.control.DatePicker;
 import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXTimePicker;
+import java.io.IOException;
 import java.sql.Timestamp;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -49,8 +55,6 @@ public class ChoixBoxController implements Initializable {
     private ChoiceBox<String> choixcat;
     @FXML
     private DatePicker datedebut;
-    @FXML
-    private DatePicker datefin;
     @FXML
     private JFXTimePicker time;
 
@@ -105,7 +109,70 @@ choixcat.setOnAction(event -> {
         // utiliser l'id du docteur pour effectuer des opérations nécessaires
     }
 
- @FXML
+    @FXML
+ public void ajouterRendezVous(ActionEvent event) throws SQLException {
+    Typeappoinment selectedType = choixType.getSelectionModel().getSelectedItem();
+    String selectedMode = choixcat.getSelectionModel().getSelectedItem();
+
+    // Récupérer la date et l'heure sélectionnées par l'utilisateur
+    LocalDate date = datedebut.getValue();
+    LocalTime heure = time.getValue();
+    LocalDateTime dateHeure = LocalDateTime.of(date, heure);
+
+    // Vérifier si la date et l'heure sélectionnées sont déjà réservées
+    ServiceRednezVous service = new ServiceRednezVous();
+    List<Appointment> appointments = service.getAppointmentsByDoctorAndDate(idDocteur, dateHeure);
+    for (Appointment appointment : appointments) {
+        if (appointment.getAppointment_date().equals(dateHeure)) {
+            // La date et l'heure sélectionnées sont déjà réservées
+            JOptionPane.showMessageDialog(null, "Cette date et heure sont déjà réservées. Veuillez choisir une autre date.");
+            return;
+        }
+    }
+
+    // Si la date et l'heure ne sont pas déjà réservées, créer le rendez-vous
+    Appointment appointment = new Appointment();
+    User user = new User("nom", "prenom", "abbes525@gmail.com", 2);
+    appointment.setUser(user);
+    appointment.setDoctor(new Doctor(idDocteur));
+    appointment.setType(selectedType);
+    appointment.setCategorie(selectedMode);
+    appointment.setAppointment_date(dateHeure);
+    appointment.setApproved(false);
+
+     String recipient = "mohamedamine.sidhom@esprit.tn";
+                 try {
+                 utils.Mail.envoyer(recipient);
+                 System.out.println("Le message a été envoyé avec succès.");
+                 } catch (Exception e) {
+                 System.err.println("Erreur lors de l'envoi du message : " + e.getMessage());
+                 e.printStackTrace();}
+             service.ajouter(appointment);
+            
+            JOptionPane.showMessageDialog(null,"Succés De Création ");
+        
+        }
+
+    @FXML
+    private void goback(ActionEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("/GUI/Doctors.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+}
+
+    
+    
+
+
+
+
+
+
+
+/* @FXML
      private void ajouterRendezVous(ActionEvent event) throws SQLException {
        /*  Appointment p = new Appointment();
          ServiceDoctor serviceDocteur = new ServiceDoctor();
@@ -114,7 +181,7 @@ choixcat.setOnAction(event -> {
          Date date_cours = Date.valueOf(localDate.toString());
         
         ServicetypeRDV sp =new ServicetypeRDV();
-        sp.ajouter_reservation_cov(p);*/
+        sp.ajouter_reservation_cov(p);
         Typeappoinment selectedType = choixType.getSelectionModel().getSelectedItem();
     String selectedMode = choixcat.getSelectionModel().getSelectedItem();
     //Date selectedStartDate = Date.valueOf(datedebut.getValue());
@@ -154,7 +221,7 @@ choixcat.setOnAction(event -> {
         }
     
     
-    }
+    }*/
 
     
 
