@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.WhoController">
+   <children>
+      <Region prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #2a90FF;" />
+      <Label layoutX="259.0" layoutY="164.0" prefHeight="38.0" prefWidth="367.0" text="Are you a Doctor or a patient ?" textAlignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="272.0" layoutY="275.0" mnemonicParsing="false" onAction="#handlePatientButtonAction" text="Patient" />
+      <Button layoutX="471.0" layoutY="275.0" mnemonicParsing="false" text="Doctor" onAction="#handleDoctorButtonAction" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FPController">
+   <children>
+      <Label layoutX="226.0" layoutY="75.0" prefHeight="38.0" prefWidth="148.0" text="Forget Password" textAlignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="144.0" prefHeight="22.0" prefWidth="125.0" text="Enter Email:" />
+      <PasswordField layoutX="183.0" layoutY="141.0" prefHeight="25.0" prefWidth="276.0" promptText="Enter your email" fx:id="usernameField" />
+      <Button layoutX="239.0" layoutY="268.0" mnemonicParsing="false" onAction="#forgetPassword" text="Reset Password" />
+   </children>
+</AnchorPane>

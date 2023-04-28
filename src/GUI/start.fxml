@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartController">
+    <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="300.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../resources/medical-logo.png" />
+        </image>
+    </ImageView>
+    <Label layoutX="349.0" layoutY="171.0" text="Welcome" textFill="#010203">
+      <font>
+         <Font size="25.0" />
+      </font></Label>
+            <Region prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #2a90FF;" />
+    <TextField fx:id="emailField" layoutX="325.0" layoutY="239.0" promptText="Email" />
+    <PasswordField fx:id="passwordField" layoutX="325.0" layoutY="300.0" promptText="Password" />
+    <Label layoutX="312.0" layoutY="418.0" text="Don't have an account?" />
+    <Button fx:id="loginButton" layoutX="312.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginuser" prefWidth="175.0" style="-fx-background-color: #0099FF; -fx-text-fill: white;" text="Login" />
+    <Button fx:id="signupButton" layoutX="485.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleuserButton" prefWidth="100.0" style="-fx-background-color: #0099FF; -fx-text-fill: white;" text="Sign Up" />
+    <Label layoutX="312.0" layoutY="464.0" text="Forgot password?" />
+    <Label layoutX="469.0" layoutY="464.0" text="|" />
+    <Button fx:id="resetPasswordButton" layoutX="485.0" layoutY="464.0" mnemonicParsing="false" onAction="#handleResetPasswordButton" prefWidth="125.0" style="-fx-background-color: #0099FF; -fx-text-fill: white;" text="Forgot Password" />
+   <Label layoutX="471.0" layoutY="418.0" text="|" />
+</AnchorPane>
