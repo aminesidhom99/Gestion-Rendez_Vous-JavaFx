@@ -79,6 +79,29 @@ pre.setTimestamp(5, datefinTimestamp);
     return verif;
 }
     
+    
+//
+public User OneUser(int idu) {
+           User u = new User();
+        try {
+            String req = "select * from user where id= "+idu;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                 u.setId(idu);
+               u.setName(rs.getString("name"));
+                u.setEmail(rs.getString("email"));
+                u.setUsername(rs.getString("username"));
+                System.out.println(u);
+              
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return u ;
+    }
+    ////
     //// afficher la liste de tous les rendez vous 
     public List<Appointment> readAll() throws SQLException {
     List<Appointment> appointmentList = new ArrayList<>();
@@ -228,6 +251,82 @@ public List<Appointment> getAppointmentsByDoctorAndDate(int doctorId, LocalDateT
         return listper;
     }*/
     
+
+  public List<Appointment> UserAppointment(int idc) throws SQLException {
+    List<Appointment> appointmentList = new ArrayList<>();
+    String req = "select * from Appointment where user_id = " + idc ;
+    ResultSet res = ste.executeQuery(req);
+    while (res.next()) {
+        Appointment appointment = new Appointment();
+      appointment.setId(res.getInt("id"));
+  //   appointment.setAppointment_date(res.getDate("appointment_date"));
+  Timestamp timestamp = res.getTimestamp("appointment_date");
+LocalDateTime dateTime = timestamp.toLocalDateTime();
+appointment.setAppointment_date(dateTime);
+
+
+        appointment.setDatefin(res.getDate("datefin"));
+        appointment.setCategorie(res.getString("categorie"));
+        appointment.setApproved(false);
+       
+      //  int userId = res.getInt("user_id");
+        int doctorId = res.getInt("doctor_id");
+        int typeId = res.getInt("type_id");
+    
+
+        ServiceDoctor coursServices = new ServiceDoctor();
+            Doctor cours = coursServices.GetDoctorById(doctorId);
+            ServicetypeRDV typeServices = new ServicetypeRDV();
+            Typeappoinment typee = typeServices.GetTypeById(typeId);
+            ServiceUser userServices = new ServiceUser();
+           User userr = userServices.GetUserById(idc);
+        //Appointment appointment = new Appointment(id, new User(userId), new Doctor(doctorId), new Typeappoinment(typeId), appointmentDate, dateFin, category, approved);
+       appointment.setUser(userr);
+       appointment.setDoctor(cours);
+       appointment.setType(typee);
+        appointmentList.add(appointment);
+    }
+    return appointmentList;
+}
+
+
+/* public List<Appointment> readByUser(int userid) throws SQLException {
+    List<Appointment> appointmentList = new ArrayList<>();
+    String req = "SELECT * FROM Appointment  WHERE user_id = ?";
+    ResultSet res = ste.executeQuery(req);
+     PreparedStatement pre=con.prepareStatement(req);
+        pre.setInt(1, userid);
+    while (res.next()) {
+        Appointment appointment = new Appointment();
+      appointment.setId(res.getInt("id"));
+  Timestamp timestamp = res.getTimestamp("appointment_date");
+LocalDateTime dateTime = timestamp.toLocalDateTime();
+appointment.setAppointment_date(dateTime);
+
+
+        appointment.setDatefin(res.getDate("datefin"));
+        appointment.setCategorie(res.getString("categorie"));
+        appointment.setApproved(false);
+       
+        int userId = res.getInt("user_id");
+        int doctorId = res.getInt("doctor_id");
+        int typeId = res.getInt("type_id");
+    
+
+        ServiceDoctor coursServices = new ServiceDoctor();
+            Doctor cours = coursServices.GetDoctorById(doctorId);
+            ServicetypeRDV typeServices = new ServicetypeRDV();
+            Typeappoinment typee = typeServices.GetTypeById(typeId);
+            ServiceUser userServices = new ServiceUser();
+            User userr = userServices.GetUserById(userId);
+        //Appointment appointment = new Appointment(id, new User(userId), new Doctor(doctorId), new Typeappoinment(typeId), appointmentDate, dateFin, category, approved);
+       appointment.setUser(userr);
+       appointment.setDoctor(cours);
+       appointment.setType(typee);
+        appointmentList.add(appointment);
+    }
+    return appointmentList;
+}*/
     
     /*  public List<Appointment> sortbydate() throws SQLException {
         ArrayList<Appointment> listper = new ArrayList<>();

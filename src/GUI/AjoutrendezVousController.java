@@ -98,16 +98,23 @@ public class AjoutrendezVousController implements Initializable {
 
     
     
-    @FXML
+     @FXML
      private void ajouterCov(ActionEvent event) throws SQLException {
          Typeappoinment p = new Typeappoinment();
         p.setNomtype(tftype.getText());
         p.setDescription(tfcategorie.getText());
         
         ServicetypeRDV sp =new ServicetypeRDV();
+         String nomtype = tftype.getText() ; 
+                String categorie = tfcategorie.getText() ; 
+         if (categorie.isEmpty() || nomtype.isEmpty()   ) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("s'il vous plaît remplir tous les champs !");
+            alert.showAndWait();
+        } else  {
         sp.ajouter_reservation_cov(p);
     }
-    
+     }
   
    
      @FXML

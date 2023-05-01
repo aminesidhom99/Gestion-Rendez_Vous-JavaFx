@@ -28,6 +28,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Pdf;
+import utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -69,8 +70,9 @@ HBox column1 = new HBox();
 
         List<Appointment> l = new ArrayList<Appointment>();
         ServiceRednezVous ser = new ServiceRednezVous();
+        int idc = SessionManager.getId();
         try {
-            l = ser.readAll();
+            l = ser.UserAppointment(idc);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -83,7 +85,7 @@ HBox column1 = new HBox();
     hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
    //box.setStyle("-fx-background-color: #ffffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
-    Label label1 = new Label( d.getUser().getName()); // Add a prefix to the label text
+    Label label1 = new Label( d.getUser().getUsername()); // Add a prefix to the label text
     label1.setWrapText(true);
   //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label1.setPrefWidth(200);
@@ -196,6 +198,7 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
 
         List<Appointment> l = new ArrayList<Appointment>();
         ServiceRednezVous ser = new ServiceRednezVous();
+       
         try {
             l = ser.readAll();
         } catch (SQLException ex) {
@@ -210,7 +213,7 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
     hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
    //box.setStyle("-fx-background-color: #ffffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
-    Label label1 = new Label( d.getUser().getName()); // Add a prefix to the label text
+    Label label1 = new Label( d.getUser().getUsername()); // Add a prefix to the label text
     label1.setWrapText(true);
   //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label1.setPrefWidth(200);
@@ -257,11 +260,11 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
 
     for (Appointment RDV : RDVE) {
         
-        if (RDV.getUser().getName().toLowerCase().contains(searchValue.toLowerCase())
+        if (RDV.getUser().getUsername().toLowerCase().contains(searchValue.toLowerCase())
                 || RDV.getDoctor().getName().toLowerCase().contains(searchValue.toLowerCase())) {
            HBox hbox = new HBox(90); // Increase the spacing between labels
     hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
-            Label label1 = new Label( RDV.getUser().getName()); // Add a prefix to the label text
+            Label label1 = new Label( RDV.getUser().getUsername()); // Add a prefix to the label text
     label1.setWrapText(true);
   //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label1.setPrefWidth(200);

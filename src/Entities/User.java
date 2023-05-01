@@ -12,6 +12,7 @@ package Entities;
 public class User {
     private String name,email,username ; 
     private int id ;
+    public static User Current_User;
 
     public User(String name, String email, String username, int id) {
         this.name = name;
@@ -63,6 +64,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public static User getCurrent_User() {
+        return Current_User;
+    }
+
+    public static void setCurrent_User(User Current_User) {
+        User.Current_User = Current_User;
     }
   
      @Override

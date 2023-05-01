@@ -55,7 +55,7 @@ public class StatController implements Initializable {
         List<Appointment> appointments = service.readAll();
         Map<String, Integer> appointmentCountsByDate = new HashMap<>();
         for (Appointment appointment : appointments) {
-            String date = appointment.getAppointment_date().toString();
+            String date = appointment.getDatefin().toString();
             if (appointmentCountsByDate.containsKey(date)) {
                 appointmentCountsByDate.put(date, appointmentCountsByDate.get(date) + 1);
             } else {

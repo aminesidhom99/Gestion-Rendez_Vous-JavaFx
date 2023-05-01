@@ -38,6 +38,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -129,10 +130,23 @@ choixcat.setOnAction(event -> {
             return;
         }
     }
+////////////
+    
+    
+    
+    
+    
+    
+    
 
+////////////////
     // Si la date et l'heure ne sont pas déjà réservées, créer le rendez-vous
     Appointment appointment = new Appointment();
-    User user = new User("nom", "prenom", "abbes525@gmail.com", 2);
+   // User user = new User("nom", "prenom", "abbes525@gmail.com", 2);
+   // appointment.setUser(user);
+    ServiceRednezVous serviceDoctor = new ServiceRednezVous();
+  int  idc = SessionManager.getId();
+  User user = serviceDoctor.OneUser(SessionManager.getId());
     appointment.setUser(user);
     appointment.setDoctor(new Doctor(idDocteur));
     appointment.setType(selectedType);
