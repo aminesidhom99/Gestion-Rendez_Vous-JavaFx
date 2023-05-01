@@ -2,17 +2,19 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="562.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gui2.AjouterOrdonnanceController">
+<AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gui2.AjouterOrdonnanceController">
    <children>
       <Label />
       <Label layoutX="47.0" layoutY="117.0" prefHeight="25.0" prefWidth="158.0" text="NOM MEDICAMENT" textFill="#8f9dab">
@@ -35,7 +37,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="311.0" text="NOM DU CONSULTATION:" textFill="#8f9dab">
+      <Label layoutX="38.0" layoutY="311.0" text="NOM DE LA CONSULTATION:" textFill="#8f9dab">
          <font>
             <Font size="16.0" />
          </font>
@@ -56,7 +58,7 @@
       </TextField>
       <TextField fx:id="tfFrequence" layoutX="250.0" layoutY="204.0" prefHeight="42.0" prefWidth="278.0" promptText="2 Fois/Jours" style="-fx-background-color: #F0F8FF;" />
       <DatePicker fx:id="tfDateCreation" layoutX="250.0" layoutY="254.0" prefHeight="42.0" prefWidth="278.0" promptText="Exemple : 2023-03-06 13:08:38" style="-fx-background-color: #F0F8FF;" styleClass="datePicker" stylesheets="@style.css" />
-      <TableView fx:id="testajout" editable="true" layoutX="59.0" layoutY="360.0" prefHeight="197.0" prefWidth="638.0" stylesheets="@style.css">
+      <TableView fx:id="testajout" editable="true" layoutX="40.0" layoutY="500.0" prefHeight="193.0" prefWidth="638.0" stylesheets="@style.css">
         <columns>
           <TableColumn fx:id="tbNo" prefWidth="166.3999900817871" text="Nom Medicament :" />
           <TableColumn fx:id="tbdos" minWidth="3.0" prefWidth="129.59999084472656" text="Dose (en mg) :" />
@@ -64,11 +66,9 @@
             <TableColumn fx:id="tbDate" prefWidth="182.4000244140625" text="Date de création : " />
         </columns>
       </TableView>
-      <Button cancelButton="true" defaultButton="true" layoutX="865.0" layoutY="510.0" mnemonicParsing="false" onAction="#showAllPersonnefilBDbyhaithem" prefHeight="34.0" prefWidth="72.0" styleClass="btn" stylesheets="@style.css" text="SHOW" textFill="#8f9dab" wrapText="true" />
-      <Label fx:id="LBShow" layoutX="7.0" layoutY="384.0" text="LBShow" />
-      <Button cancelButton="true" defaultButton="true" layoutX="731.0" layoutY="511.0" mnemonicParsing="false" onAction="#AfficherPub" prefHeight="34.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="AFFICHER" textFill="#8f9dab" wrapText="true" />
-      <Button cancelButton="true" layoutX="723.0" layoutY="384.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="34.0" prefWidth="104.0" styleClass="btn" stylesheets="@style.css" text="SUPPRIMER" textFill="#b8311f" textOverrun="WORD_ELLIPSIS" wrapText="true" />
-      <Button cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" layoutX="846.0" layoutY="384.0" mnemonicParsing="false" onAction="#ModifierPub" prefHeight="34.0" prefWidth="90.0" styleClass="btn" stylesheets="@style.css" text="MODIFIER" textFill="#b98d1f" />
+      <Button cancelButton="true" defaultButton="true" layoutX="714.0" layoutY="654.0" mnemonicParsing="false" onAction="#AfficherPub" prefHeight="34.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="AFFICHER" textFill="#8f9dab" wrapText="true" />
+      <Button cancelButton="true" layoutX="714.0" layoutY="562.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="34.0" prefWidth="104.0" styleClass="btn" stylesheets="@style.css" text="SUPPRIMER" textFill="#b8311f" textOverrun="WORD_ELLIPSIS" wrapText="true" />
+      <Button cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" layoutX="835.0" layoutY="562.0" mnemonicParsing="false" onAction="#ModifierPub" prefHeight="34.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="MODIFIER" textFill="#b98d1f" />
       <ComboBox fx:id="tfIdConsultation" layoutX="250.0" layoutY="303.0" prefHeight="41.0" prefWidth="278.0" styleClass="comboBox" stylesheets="@style.css" />
       <Button fx:id="btnValider1" cancelButton="true" defaultButton="true" layoutX="582.0" layoutY="244.0" mnemonicParsing="false" onAction="#SaveOrdonnance" prefHeight="29.0" prefWidth="133.0" styleClass="btn" stylesheets="@style.css" text="Suivant" textFill="#8f9dab" wrapText="true">
          <font>
@@ -97,10 +97,39 @@
             <Font name="Arial" size="12.0" />
          </font>
       </TextField>
-      <Label layoutX="551.0" layoutY="105.0" prefHeight="25.0" prefWidth="158.0" text="NUMERO" textFill="#8f9dab">
+      <Label layoutX="551.0" layoutY="113.0" prefHeight="25.0" prefWidth="158.0" text="NUMERO" textFill="#8f9dab">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <Button cancelButton="true" layoutX="784.0" layoutY="480.0" mnemonicParsing="false" onAction="#PDF" prefHeight="34.0" prefWidth="104.0" styleClass="btn" stylesheets="@style.css" text="Imprimer" textFill="#b8311f" textOverrun="WORD_ELLIPSIS" wrapText="true" />
+      <Button cancelButton="true" layoutX="835.0" layoutY="654.0" mnemonicParsing="false" onAction="#imprimerOrdonnance" prefHeight="34.0" prefWidth="98.0" styleClass="btn" stylesheets="@style.css" text="EXPORTER" textFill="#b8311f" textOverrun="WORD_ELLIPSIS" wrapText="true" />
+      <ChoiceBox fx:id="chox" disable="true" layoutX="332.0" layoutY="457.0" prefHeight="30.0" prefWidth="150.0">
+         <effect>
+            <Glow />
+         </effect>
+      </ChoiceBox>
+      <TextField fx:id="trrrr" layoutX="521.0" layoutY="455.0" prefHeight="34.0" prefWidth="150.0" promptText="Exemple : Doliprane" style="-fx-background-color: #F0F8FF;" styleClass="column-header" stylesheets="@style.css">
+         <cursor>
+            <Cursor fx:constant="S_RESIZE" />
+         </cursor>
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </TextField>
+      <Pane layoutX="-17.0" layoutY="359.0" prefHeight="86.0" prefWidth="950.0" styleClass="head-background" stylesheets="@style.css">
+         <children>
+            <Label layoutX="224.0" layoutY="47.0" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="135.0" layoutY="12.0" prefHeight="62.0" prefWidth="365.0" text="liste des Ordonnances" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

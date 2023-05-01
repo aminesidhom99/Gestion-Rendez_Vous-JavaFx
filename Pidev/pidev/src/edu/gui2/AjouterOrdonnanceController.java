@@ -6,6 +6,27 @@
 package edu.gui2;
 
 //import com.mysql.cj.protocol.Message;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import edu.entities.Consultation;
 import edu.entities.Ordonnance;
 import edu.services.ConsultationCrud;
@@ -65,6 +86,23 @@ import java.sql.DriverManager;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableRow;
+import javafx.scene.input.MouseButton;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import static org.apache.commons.io.IOUtils.writer;
 
 /**
  * FXML Controller class
@@ -93,7 +131,6 @@ public class AjouterOrdonnanceController implements Initializable {
     private TableColumn<Ordonnance, String> tbFrequence;
     @FXML
     private TableColumn<Ordonnance, Date> tbDate;
-    @FXML
     private Label LBShow;
     @FXML
     private ComboBox<String> tfIdConsultation;
@@ -109,6 +146,10 @@ public class AjouterOrdonnanceController implements Initializable {
     private int id_consultation_id = -1;
     @FXML
     private Button btnValider1;
+    @FXML
+    private ChoiceBox<?> chox;
+    @FXML
+    private TextField trrrr;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -125,9 +166,55 @@ public class AjouterOrdonnanceController implements Initializable {
             SelectedValue = valuesMap.get(SelectedOption);
             id_consultation_id = SelectedValue;
         });
+//        testajout.setRowFactory(tv -> {
+//    TableRow<Ordonnance> row = new TableRow<>();
+//    row.setOnMouseClicked(event -> {
+//        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2 && !row.isEmpty()) {
+//            Ordonnance ordonnanceSelectionnee = row.getItem();
+//            // Afficher les détails de l'ordonnance sélectionnée
+//            System.out.println("Nom du médicament : " + ordonnanceSelectionnee.getNom_Medicament());
+//            System.out.println("Dose : " + ordonnanceSelectionnee.getDose());
+//            System.out.println("Fréquence : " + ordonnanceSelectionnee.getFrequence());
+//            System.out.println("Date de création : " + ordonnanceSelectionnee.getDate_creation());
+//        }
+//    });
+//    return row ;
+//});
+// Ajouter un listener pour détecter les double-clics sur les lignes de la table
+    testajout.setRowFactory(tv -> {
+        TableRow<Ordonnance> row = new TableRow<>();
+        row.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && !row.isEmpty()) {
+                Ordonnance ordonnanceSelectionnee = row.getItem();
+                afficherDetailsOrdonnance(ordonnanceSelectionnee);
+            }
+        });
+        return row;
+    });
     }
 private static List<Ordonnance> ordonnances = new ArrayList<>();
+@FXML
+private void afficherDetailsOrdonnance(Ordonnance ordonnance) {
+    try {
+        // Charger le fichier FXML de la nouvelle fenêtre
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherOrdonnance.fxml"));
+        Parent root = loader.load();
 
+        // Récupérer le contrôleur de la nouvelle fenêtre
+        AfficherOrdonnanceController controller = loader.getController();
+
+        // Passer les détails de l'ordonnance sélectionnée au contrôleur de la nouvelle fenêtre
+        controller.setDetailsOrdonnance(ordonnance);
+
+        // Afficher la nouvelle fenêtre
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
     @FXML
 private void SaveOrdonnance(ActionEvent event) {
     String dose = tfDose.getText();
@@ -253,7 +340,6 @@ private void valider(ActionEvent event) {
         }
     }
 
-    @FXML
     private void showAllPersonnefilBDbyhaithem(ActionEvent event) {
         OrdonnanceCrud oc = new OrdonnanceCrud();
 
@@ -314,6 +400,9 @@ private void valider(ActionEvent event) {
         testajout.setItems(liste);
 
     }
+  
+
+    
 //    public List<Ordonnance> afficher() throws SQLException {
 //        Connection cnx = null;
 //        Statement st = null;
@@ -394,4 +483,295 @@ private void valider(ActionEvent event) {
         
          
      }
+   
+
+    @FXML
+    private void PDF(ActionEvent event) throws SQLException {
+
+       try {
+       com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+       PdfWriter.getInstance(doc,new FileOutputStream("C:\\Users\\SAHLI\\reclamation.pdf"));  
+       doc.open();
+       
+     // Image img = Image.getInstance("C:\\Users\\CC\\3D Objects\\JDBCJAVAFX\\Evenement.pdf");
+       //img.scaleAbsoluteHeight(60);
+       //img.scaleAbsoluteWidth(100);
+       //img.setAlignment(Image.ALIGN_RIGHT);
+       //doc.open();
+       //doc.add(img);
+   
+       doc.add(new Paragraph(" "));
+       Font font = new Font(Font.FontFamily.TIMES_ROMAN, 28, Font.UNDERLINE, BaseColor.BLACK);
+       Paragraph p = new Paragraph("liste des Ordonnances  ", font);
+       p.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+       doc.add(p);
+       doc.add(new Paragraph(" "));
+       doc.add(new Paragraph(" "));
+
+       PdfPTable tabpdf = new PdfPTable(8);
+       tabpdf.setWidthPercentage(100);
+       
+       PdfPCell cell;
+       cell = new PdfPCell(new Phrase("Nom de medicament", FontFactory.getFont("Times New Roman", 11)));
+       cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+       cell.setBackgroundColor(BaseColor.WHITE);
+       tabpdf.addCell(cell);
+       
+       cell = new PdfPCell(new Phrase("dose ", FontFactory.getFont("Times New Roman", 11)));
+       cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+       cell.setBackgroundColor(BaseColor.WHITE);
+       tabpdf.addCell(cell);
+       
+       cell = new PdfPCell(new Phrase("frequence", FontFactory.getFont("Times New Roman", 11)));
+       cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+       cell.setBackgroundColor(BaseColor.WHITE);
+       tabpdf.addCell(cell);
+       
+       
+       
+       cell = new PdfPCell(new Phrase("date de creation", FontFactory.getFont("Times New Roman", 11)));
+       cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+       cell.setBackgroundColor(BaseColor.WHITE);
+       tabpdf.addCell(cell);
+       
+      MyConnection myConnection = MyConnection.getInstance();
+    Connection connection = myConnection.getCnx();
+       
+      // Connection conn = getCnx();
+        String query;
+           query = " SELECT * FROM ordonnance ";
+       
+          Statement st;
+          ResultSet rs;
+          st = connection.createStatement();
+          rs = st.executeQuery(query);
+     // PreparedStatement pst = cnx.prepareStatement(requete);
+      // ResultSet rs = pst.executeQuery();
+      while (rs.next()) {
+           cell = new PdfPCell(new Phrase(rs.getString("Nom_Medicament"), FontFactory.getFont("Times New Roman", 11)));
+           cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.WHITE);
+           tabpdf.addCell(cell);
+           
+           cell = new PdfPCell(new Phrase(rs.getString("dose"), FontFactory.getFont("Times New Roman", 11)));
+           cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.WHITE);
+           tabpdf.addCell(cell);
+
+           cell = new PdfPCell(new Phrase(rs.getString("frequence"), FontFactory.getFont("Times New Roman", 11)));
+           cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.WHITE);
+           tabpdf.addCell(cell);
+
+           cell = new PdfPCell(new Phrase(rs.getString("date_creation"), FontFactory.getFont("Times New Roman", 11)));
+           cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.WHITE);
+           tabpdf.addCell(cell);
+             }
+     
+   
+          doc.add(tabpdf);
+          JOptionPane.showMessageDialog(null, "Success !!");
+          doc.close();
+          Desktop.getDesktop().open(new File("C:\\Users\\SAHLI\\reclamation.pdf"));
+       }
+         catch (DocumentException  | IOException e) {
+
+            System.out.println("ERROR PDF");
+            //System.out.println(Arrays.toString(e.getStackTrace()));
+            System.out.println(e.getMessage());
+          }
+ }
+
+    @FXML
+private void imprimerOrdonnance(ActionEvent event) throws SQLException {
+    // Vérifier si une ordonnance est sélectionnée
+    Ordonnance ordonnance = testajout.getSelectionModel().getSelectedItem();
+    if (ordonnance == null) {
+        // Si aucune ordonnance n'est sélectionnée, afficher un message d'erreur
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucune ordonnance sélectionnée");
+        alert.setContentText("Veuillez sélectionner une ordonnance à imprimer.");
+        alert.showAndWait();
+        return;
+    }
+       // Image backgroundImage = Image.getInstance("chemin/vers/images.jpg");
+ //writer.setBackgroundImage(backgroundImage);
+
+   // doc.open();
+    try {
+        // Créer le document PDF
+        com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+        PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\SAHLI\\ordonnance.pdf"));
+       // Image backgroundImage = Image.getInstance("chemin/vers/images.jpg");
+// writer.setBackgroundImage(backgroundImage);
+
+        doc.open();
+
+        // Ajouter les détails de l'ordonnance au document
+        Font font = new Font(Font.FontFamily.COURIER, 28, Font.BOLD, BaseColor.WHITE);
+
+//PdfPCell cell = new PdfPCell(new Phrase(" ", new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.WHITE)));
+//cell.setBackgroundColor(new BaseColor(0x4d, 0xae, 0xa7));
+//cell.setBorder(Rectangle.NO_BORDER);
+//cell.setFixedHeight(130f); // Set the fixed height of the cell to 100 units
+//PdfPTable table = new PdfPTable(1);
+//table.setWidthPercentage(130);
+//table.addCell(cell);
+//doc.add(table);
+
+// Ajouter le titre "Ordonnance"
+
+Paragraph p11 = new Paragraph("VOTRE ORDONNANCE ", font);
+p11.setAlignment(com.itextpdf.text.Element.ALIGN_LEFT);
+
+// Créer la cellule avec une hauteur fixe de 130 unités et ajouter le titre à la cellule
+PdfPCell cell = new PdfPCell();
+cell.setFixedHeight(120f);
+cell.addElement(p11);
+cell.setBackgroundColor(new BaseColor(0x4d, 0xae, 0xa7));
+cell.setBorder(Rectangle.NO_BORDER);
+
+// Créer la table et ajouter la cellule à la table
+PdfPTable table = new PdfPTable(1);
+table.setWidthPercentage(114);
+table.addCell(cell);
+
+// Ajouter la table au document
+doc.add(table);
+
+
+//Paragraph p1 = new Paragraph("Ordonnance", font);
+//        p1.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+//        doc.add(p1);
+        doc.add(new Paragraph(" "));
+        Paragraph p2 = new Paragraph();
+p2.add(new Chunk("Nom du médicament : ", new Font(Font.FontFamily.COURIER , 20, Font.BOLD, BaseColor.GRAY)));
+//p2.add(new Chunk(ordonnance.getNom_Medicament(), new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL, BaseColor.BLACK)));
+doc.add(p2);
+doc.add(new Paragraph("\n"));
+
+ Paragraph p22 = new Paragraph();
+//p22.add(new Chunk(ordonnance.getNom_Medicament().replace("\n", " | "), new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL, BaseColor.BLACK)));
+//p22.add(new Chunk(ordonnance.getNom_Medicament(), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL, BaseColor.BLACK)));
+p22.add(new Chunk(ordonnance.getNom_Medicament(), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL, new BaseColor(0x6b, 0xd3, 0xcf))));
+
+doc.add(p22);
+
+doc.add(new Paragraph("\n"));
+
+Paragraph p3 = new Paragraph();
+p3.add(new Chunk("Dose : ", new Font(Font.FontFamily.COURIER, 20, Font.BOLD, BaseColor.GRAY)));
+//p3.add(new Chunk(ordonnance.getDose(), new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.BLACK)));
+doc.add(p3);
+doc.add(new Paragraph("\n"));
+
+Paragraph p33 = new Paragraph();
+p33.add(new Chunk(ordonnance.getDose(), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL, BaseColor.BLACK)));
+doc.add(p33);
+
+doc.add(new Paragraph("\n"));
+
+Paragraph p4 = new Paragraph();
+p4.add(new Chunk("Fréquence :", new Font(Font.FontFamily.COURIER, 20, Font.BOLD, BaseColor.GRAY)));
+//p4.add(new Chunk(ordonnance.getFrequence(), new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL, BaseColor.BLACK)));
+
+doc.add(p4);
+doc.add(new Paragraph("\n"));
+
+Paragraph p44 = new Paragraph();
+p44.add(new Chunk(ordonnance.getFrequence(), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL, BaseColor.BLACK)));
+
+doc.add(p44);
+
+doc.add(new Paragraph("\n"));
+
+Paragraph p5 = new Paragraph();
+p5.add(new Chunk("Date de création : " , new Font(Font.FontFamily.COURIER, 20, Font.BOLD, BaseColor.GRAY)));
+//Date date = ordonnance.getDate_creation();
+//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//String formattedDate = sdf.format(date);
+//p5.add(new Chunk(formattedDate, new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL, BaseColor.BLACK)));
+Paragraph p55 = new Paragraph();
+Date date = ordonnance.getDate_creation();
+doc.add(p5);
+
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+String formattedDate = sdf.format(date);
+p55.add(new Chunk(formattedDate, new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL, BaseColor.BLACK)));
+doc.add(new Paragraph("\n"));
+//p5.add(new Chunk(ordonnance.getDate_creation(), new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.BLACK)));
+doc.add(p55);
+        doc.add(new Paragraph(" "));
+
+//doc.setBackgroundColor(new BaseColor(245, 245, 245)); // gris très clair
+
+        // Fermer le document PDF
+        doc.close();
+
+        
+        // Ouvrir le document PDF avec l'application par défaut du système
+        Desktop.getDesktop().open(new File("C:\\Users\\SAHLI\\ordonnance.pdf"));
+    } catch (DocumentException | IOException e) {
+        System.out.println("Erreur lors de la création du document PDF");
+        System.out.println(e.getMessage());
+   
+    }
+
+}
+//public void filteredSearch() {
+//  OrdonnanceCrud oc = new OrdonnanceCrud();
+//
+//        ObservableList<Ordonnance> liste = oc.getAll();
+//      //  List<Ordonnance> l = cs.getAll();
+//        //ObservableList<Ordonnance> list = FXCollections.observableArrayList(List_event);
+//        FilteredList<Ordonnance> oordo = new FilteredList(liste, p -> true);
+//        trrrr.textProperty().addListener((obs, oldValue, newValue) -> {
+//            switch (chox.getValue()) {
+//                case "Nom du médicament":
+//                    oordo.setPredicate(p -> p.getNom_Medicament().toLowerCase().contains(newValue.toLowerCase().trim()));
+//                    break;
+//                    
+//                
+//            }
+//               case "Dose":
+//                    oordo.setPredicate(p -> p.getDose().toLowerCase().contains(newValue.toLowerCase().trim()));
+//                    break;
+//            }
+//
+//        });
+//        testajout.setItems(oordo);
+//        chox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal)
+//                -> {
+//            if (newVal != null) {
+//                trrrr.setText("");
+//            }
+//        });
+//
+//    }
+@FXML
+private void handleTableClick(MouseEvent event) throws ParseException {
+    if (event.getClickCount() == 3) {
+        // Récupération de l'ordonnance sélectionnée
+        Ordonnance ordonnanceSelectionnee = testajout.getSelectionModel().getSelectedItem();
+        
+        // Vérification que l'ordonnance sélectionnée existe
+        if (ordonnanceSelectionnee != null) {
+            try {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateOrdonnance.fxml"));
+    Parent root = loader.load();
+    UpdateOrdonnanceController modifierOrdonnanceController = loader.getController();
+    modifierOrdonnanceController.setOrdonnance(ordonnanceSelectionnee);
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+        }
+    }
+}
+
 }

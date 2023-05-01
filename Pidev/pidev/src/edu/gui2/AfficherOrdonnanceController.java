@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
 /**
@@ -30,7 +32,13 @@ import javafx.scene.control.TableView;
 public class AfficherOrdonnanceController implements Initializable {
 
     @FXML
-    private TableView<Ordonnance> LBShow;
+    private Label nomMedicamentLabel;
+    @FXML
+    private Label doseLabel;
+    @FXML
+    private Label frequenceLabel;
+    @FXML
+    private Label dateCreationLabel;
 
     /**
      * Initializes the controller class.
@@ -40,6 +48,25 @@ public class AfficherOrdonnanceController implements Initializable {
         // TODO
     }    
     
+
+private Ordonnance ordonnance;
+
+public void setDetailsOrdonnance(Ordonnance ordonnance) {
+    this.ordonnance = ordonnance;
+    initialiserVue();
+}
+
+private void initialiserVue() {
+    nomMedicamentLabel.setText(ordonnance.getNom_Medicament());
+    doseLabel.setText(ordonnance.getDose());
+    frequenceLabel.setText(ordonnance.getFrequence());
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+String formattedDate = dateFormat.format(ordonnance.getDate_creation());
+dateCreationLabel.setText(formattedDate);
+
+    //dateCreationLabel.setText(ordonnance.getDate_creation());
+}
+
 ////    public List<Ordonnance> afficher() throws SQLException {
 ////        Connection cnx = null;
 ////        Statement st = null;
