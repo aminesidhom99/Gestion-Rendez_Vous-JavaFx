@@ -75,8 +75,8 @@ public class UpdateRDVController implements Initializable {
     @FXML
     
     private DatePicker datedebut;
-    @FXML
-    private DatePicker datefin;
+    //@FXML
+   // private DatePicker datefin;
     @FXML
     private VBox vb;
 
@@ -190,7 +190,8 @@ for (Appointment d : l) {
                  b = d.getUser() ; 
                  c = d.getDoctor() ; 
                   datedebut.setValue(d.getAppointment_date().toLocalDate());
-             datefin.setValue(d.getDatefin().toLocalDate());
+            // datefin.setValue(d.getDatefin().toLocalDate());
+          //   time.setValue(LocalTime.MAX);
    
   
 
@@ -251,12 +252,11 @@ vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment:");
     String selectedMode = choixcat.getSelectionModel().getSelectedItem();
    
 // Date selectedStartDate = Date.valueOf(datedebut.getValue());
-    Date selectedEndDate = Date.valueOf(datefin.getValue());
+    //Date selectedEndDate = Date.valueOf(datefin.getValue());
     
     LocalDate startDate = datedebut.getValue();
 LocalTime startTime = time.getValue();
 LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
-
     
        
         
@@ -267,7 +267,7 @@ if ( a == 0 ) {
             alert.showAndWait();
 } else 
 
-        if (selectedType == null || selectedMode.isEmpty() || startDate == null ||startTime==null ||selectedEndDate== null  ) {
+        if (selectedType == null || selectedMode.isEmpty() || startDate == null ||startTime==null   ) { //||selectedEndDate== null
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("s'il vous plaît il faut remplir tous les champs ! ");
             alert.showAndWait();
@@ -275,7 +275,7 @@ if ( a == 0 ) {
           
     
    
-           Appointment p = new Appointment(a, b, c, selectedType, startDateTime, selectedEndDate, selectedMode, false);
+           Appointment p = new Appointment(a, b, c, startDateTime, selectedType,selectedMode, false);
 
 
             try {

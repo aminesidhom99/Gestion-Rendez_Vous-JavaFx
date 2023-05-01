@@ -116,7 +116,7 @@ LocalDateTime dateTime = timestamp.toLocalDateTime();
 appointment.setAppointment_date(dateTime);
 
 
-        appointment.setDatefin(res.getDate("datefin"));
+      appointment.setDatefin(res.getDate("datefin"));
         appointment.setCategorie(res.getString("categorie"));
         appointment.setApproved(false);
        
@@ -158,11 +158,16 @@ public void update(Appointment c) throws SQLException {
     pre.setInt(1, c.getUser().getId());
     pre.setInt(2, c.getDoctor().getId());
     Timestamp timestamp = Timestamp.valueOf(c.getAppointment_date());
-            pre.setTimestamp(3, timestamp);
+           // pre.setTimestamp(3, timestamp);
    // pre.setLocalDateTime(3,c.getAppointment_date());
 pre.setTimestamp(3, timestamp);
-Timestamp time = Timestamp.valueOf(c.getAppointment_date());
-            pre.setTimestamp(4, time);
+//Timestamp time = Timestamp.valueOf(c.getAppointment_date());
+           // pre.setTimestamp(4, time);
+              LocalDateTime datefin = c.getAppointment_date().plusMinutes(30);
+Timestamp datefinTimestamp = Timestamp.valueOf(datefin);
+
+// Utiliser la méthode setTimestamp() pour la colonne 4 et 5
+pre.setTimestamp(4, datefinTimestamp);
     pre.setInt(5, c.getType().getId());
     pre.setString(6, c.getCategorie());
     pre.setBoolean(7, c.isApproved());
@@ -264,7 +269,7 @@ public List<Appointment> getAppointmentsByDoctorAndDate(int doctorId, LocalDateT
 LocalDateTime dateTime = timestamp.toLocalDateTime();
 appointment.setAppointment_date(dateTime);
 
-
+ 
         appointment.setDatefin(res.getDate("datefin"));
         appointment.setCategorie(res.getString("categorie"));
         appointment.setApproved(false);

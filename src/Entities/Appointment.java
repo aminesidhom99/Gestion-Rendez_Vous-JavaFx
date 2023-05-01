@@ -59,6 +59,16 @@ public class Appointment {
     public Appointment(int a, User b, Doctor c, Typeappoinment selectedType, LocalDateTime startDateTime, String selectedMode, boolean b0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Appointment(int id, User user, Doctor doctor,LocalDateTime appointment_date, Typeappoinment type, String categorie, boolean approved ) {
+        this.id = id;
+        this.user = user;
+        this.doctor = doctor;
+        this.type = type;
+        this.categorie = categorie;
+        this.approved = approved;
+        this.appointment_date = appointment_date;
+    }
    
 
     public int getId() {

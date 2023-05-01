@@ -70,9 +70,9 @@ HBox column1 = new HBox();
 
         List<Appointment> l = new ArrayList<Appointment>();
         ServiceRednezVous ser = new ServiceRednezVous();
-        int idc = SessionManager.getId();
+       // int idc = SessionManager.getId();
         try {
-            l = ser.UserAppointment(idc);
+            l = ser.readAll();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -85,7 +85,7 @@ HBox column1 = new HBox();
     hbox.setPadding(new Insets(10, 0, 10, 0)); // Add more top and bottom padding
    //box.setStyle("-fx-background-color: #ffffff; -fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;");
 
-    Label label1 = new Label( d.getUser().getUsername()); // Add a prefix to the label text
+    Label label1 = new Label( d.getUser().getName()); // Add a prefix to the label text
     label1.setWrapText(true);
   //label1.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label1.setPrefWidth(200);
@@ -100,10 +100,10 @@ HBox column1 = new HBox();
   //label3.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label3.setPrefWidth(200);
 
-    Label label4 = new Label( d.getDatefin().toString());
-    label4.setWrapText(true);
+    //Label label4 = new Label( d.getDatefin().toString());
+   // label4.setWrapText(true);
    //abel4.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
-    label4.setPrefWidth(200);
+   // label4.setPrefWidth(200);
 
     Label label5 = new Label( String.valueOf(d.getType().getNomtype()));
     label5.setWrapText(true);
@@ -117,7 +117,7 @@ HBox column1 = new HBox();
    //abel7.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
     label7.setPrefWidth(200);
     
-    hbox.getChildren().addAll(label1, label2, label3, label4, label5, label7);
+    hbox.getChildren().addAll(label1, label2, label3,  label5, label7);//label4,
     hbox.setAlignment(Pos.CENTER_LEFT);
     vb.getChildren().add(hbox);
 }
