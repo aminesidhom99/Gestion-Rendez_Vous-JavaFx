@@ -14,9 +14,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -56,22 +59,27 @@ private TextField TFPassword;
    
     }    
      @FXML
-    public void ajouter(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("conected.fxml"));
-        User p = new User();
-        p.setFirstName(TFNom.getText());
-        p.setLastName(TFPrenom.getText());
-        p.setEmail(TFEmail.getText());
-         p.setAdresse(TFAdresse.getText());
+  
+public void ajouter(ActionEvent event) throws IOException {
+    User p = new User();
+    p.setFirstName(TFNom.getText());
+    p.setLastName(TFPrenom.getText());
+    p.setEmail(TFEmail.getText());
+    p.setAdresse(TFAdresse.getText());
     p.setAge(Integer.parseInt(TFAge.getText()));
     p.setCin(Integer.parseInt(TFCin.getText()));
     p.setPassword(TFPassword.getText());
+    p.setRoleperm("Patient");
 
-        crud sp =new crud();
-        sp.ajouter(p);
-                   
+    crud sp = new crud();
+    sp.ajouter(p);
 
-    }
+    Parent root = FXMLLoader.load(getClass().getResource("conected.fxml"));
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+}
     private void showAll(ActionEvent event) {
          crud sp =new crud();
        LBShow.setText(sp.afficher().toString());

@@ -15,7 +15,12 @@
             <Font size="18.0" />
          </font>
       </Button>
-        <Button style="-fx-background-color: transparent;" text="Log Out" textFill="white">
+        <Button fx:id="logoutButton" style="-fx-background-color: transparent;" text="Log Out" textFill="white" mnemonicParsing="false" onAction="#handleLogOut">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="resetPasswordButton" style="-fx-background-color: transparent;" text="ResetPassword" textFill="white" mnemonicParsing="false" onAction="#handleResetPasswordButton">
          <font>
             <Font size="18.0" />
          </font>

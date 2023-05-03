@@ -1,5 +1,7 @@
 package GUI;
 
+import Entity.User;
+import Entity.doctor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +27,8 @@ public class ConectedController implements Initializable {
   //  private HttpSession session;
     @FXML
     private Button resetPasswordButton;
+     @FXML
+    private Button logoutButton;
 
     /**
      * Initializes the controller class.
@@ -54,6 +58,23 @@ public class ConectedController implements Initializable {
         System.out.println("Error: " + ex.getMessage());
     }
  }
+  @FXML
+private void handleLogOut(ActionEvent event) throws IOException {
+    // clear current user/doctor
+    User.setCurrent_User(null);
+    doctor.setCurrent_doctor(null);
+    
+    // close current window or navigate back to login page
+    Stage stage = (Stage) logoutButton.getScene().getWindow();
+    stage.close(); // close current window
+    
+    // navigate back to login page
+    Parent root = FXMLLoader.load(getClass().getResource("/Gui/start.fxml"));
+    Scene scene = new Scene(root);
+    Stage loginStage = new Stage();
+    loginStage.setScene(scene);
+    loginStage.show();
+}       
    // public void setSession(HttpSession session) {
      //   this.session = session;
     }

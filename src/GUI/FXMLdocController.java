@@ -72,6 +72,8 @@ private TextField TFPassword;
     p.setPassword(TFPassword.getText());
 p.setDiplome(TFDiplome.getText());
         p.setSpecialite(TFSpecialite.getText());
+            p.setRoleperm("Doctor");
+
         crud sp =new crud();
         sp.ajouterd(p);
                    

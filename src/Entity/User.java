@@ -18,6 +18,7 @@ public class User {
     private int cin;
     private String password;
     private String roleperm;
+    public static User Current_User;
 
         public User(int id, String firstName, String lastName, int cin, String email, String adresse, int age, String password, String roleperm) {
 
@@ -29,7 +30,7 @@ public class User {
         this.adresse = adresse;
         this.age = age;
         this.password = password;
-        this.roleperm = roleperm;  
+        this.roleperm = "Patient";  
 }
      public User() {
     
@@ -40,6 +41,13 @@ public class User {
         this.lastName = lastName;
         this.email = email;
       
+    }
+     public static User getCurrent_User() {
+        return Current_User;
+    }
+
+    public static void setCurrent_User(User Current_User) {
+        User.Current_User = Current_User;
     }
 
     public int getId() {

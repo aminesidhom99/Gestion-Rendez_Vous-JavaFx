@@ -33,7 +33,8 @@ public class WhoController implements Initializable {
     }    
     
     @FXML
-    public void handlePatientButtonAction(ActionEvent event) throws IOException {
+    public void handlePatientButtonAction(ActionEvent event) 
+            throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLuser.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

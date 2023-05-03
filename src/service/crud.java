@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import utils.Myconn;
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  *
  * @author HP
@@ -43,6 +45,48 @@ public class crud {
     } catch (SQLException ex) {
         System.out.println("merci de vérifier et valider vos coordonnées ");
 
+        System.out.println(ex.getMessage());
+    }
+}
+    public String hashPassword(String password) {
+    String salt = BCrypt.gensalt(10);
+    String hashedPassword = BCrypt.hashpw(password, salt);
+    return hashedPassword;
+}
+     public User getUser(String email) {
+        User stu = new User();
+        try {
+            String query = "select * from user where email =?";
+           PreparedStatement pst = cnx.prepareStatement(query);
+            pst.setString(1, email);
+         ResultSet rs = pst.executeQuery();
+
+            //tant que rs has next get matiere and add it to the list
+            while (rs.next()) {
+
+                stu.setId(rs.getInt("id")); //set id from req result
+                stu.setFirstName(rs.getString("nom"));
+                stu.setLastName(rs.getString("prenom"));
+                stu.setEmail(rs.getString("email"));
+                stu.setPassword(rs.getString("password"));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        return stu;
+    }
+    public void updatemdp(User stu) {
+    String req = "update user set password=?  WHERE email=?";
+    try {
+        PreparedStatement pst = cnx.prepareStatement(req);
+        pst.setString(1, stu.getPassword());
+        pst.setString(2, stu.getEmail());
+        pst.executeUpdate();
+        System.out.println("Password updated");
+        System.out.println(stu.getPassword());
+    } catch (SQLException ex) {
         System.out.println(ex.getMessage());
     }
 }
@@ -95,8 +139,7 @@ public ResultSet getUserInfo(String username) {
             u.setAdresse(rs.getString(5));
             u.setAge(rs.getInt(6));
             u.setCin(rs.getInt(7));
-            u.setPassword(rs.getString(8));
-            u.setRoleperm(rs.getString(9));
+            u.setRoleperm(rs.getString(8));
             users.add(u);
         }
     } catch (SQLException ex) {
@@ -122,6 +165,7 @@ public ResultSet getUserInfo(String username) {
         ps.setInt(5, t.getAge());
         ps.setInt(6, t.getCin());
         ps.setString(7, t.getPassword());
+       
         ps.setString(8, t.getRoleperm());
         ps.setInt(9, t.getId());
 
@@ -132,7 +176,7 @@ public ResultSet getUserInfo(String username) {
         System.out.println(ex.getMessage());
     }
 }
-
+   
     public void supprimer(int id) {
         try {
             String qry = "DELETE FROM `user` WHERE `id`=?";
@@ -156,6 +200,7 @@ public ResultSet getUserInfo(String username) {
             ps.setInt(5, d.getAge());
             ps.setInt(6, d.getCin());
             ps.setString(7, d.getPassword());
+           
             ps.setString(8, d.getRoleperm());
             ps.setString(9, d.getDiplome());
             ps.setString(10, d.getSpecialite());
@@ -166,6 +211,7 @@ public ResultSet getUserInfo(String username) {
             System.out.println("Erreur lors de l'ajout du doctor: " + ex.getMessage());
         }
     }
+     
 
     public List<doctor> afficherd() {
         List<doctor> doctors = new ArrayList<>();

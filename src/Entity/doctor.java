@@ -21,6 +21,7 @@ public class doctor {
     private String roleperm;
     private String diplome;
     private String specialite;
+     public static doctor Current_doctor;
 
     public doctor(int id, String firstName, String lastName, int cin, String email, String address, int age, String password, String roleperm, String diplome, String specialite) {
         this.id = id;
@@ -44,6 +45,13 @@ public class doctor {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+      public static doctor getCurrent_doctor() {
+        return Current_doctor;
+    }
+
+    public static void setCurrent_doctor(doctor Current_doctor) {
+        doctor.Current_doctor = Current_doctor;
     }
 
     public int getId() {
