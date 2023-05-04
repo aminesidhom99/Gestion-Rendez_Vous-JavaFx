@@ -5,8 +5,8 @@
  */
 package Services;
 
-import Entities.Appointment;
-import Entities.Doctor;
+import Entity.Appointment;
+import Entity.Doctor;
 import Utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,8 +37,8 @@ public class ServiceDoctor implements IServiceDoctors{
             System.out.println(ex);
         }
     }
-       public List<Doctor> readAlldoctors() throws SQLException {
-    List<Entities.Doctor> doctors = new ArrayList<>();
+    /*   public List<Doctor> readAlldoctors() throws SQLException {
+    List<Entity.Doctor> doctors = new ArrayList<>();
     String req = "SELECT * FROM Doctor";
     ResultSet rs = ste.executeQuery(req);
     while (rs.next()) {
@@ -46,11 +46,45 @@ public class ServiceDoctor implements IServiceDoctors{
         String name = rs.getString("name");
         String username = rs.getString("username");
         String email = rs.getString("email");
-        Entities.Doctor doctor = new Entities.Doctor(id, name, username, email);
+        Entity.Doctor doctor = new Entity.Doctor(id, name, username, email);
         doctors.add(doctor);
     }
     return doctors;
-       }
+       }*/
+       
+       public List<Doctor> readAlldoctors() {
+        List<Doctor> doctors = new ArrayList<>();
+
+        try {
+            String req ="SELECT * FROM `doctor` ";
+
+            Statement st = con.createStatement();
+            ResultSet rs= st.executeQuery(req);
+            while (rs.next()){
+                Doctor d = new Doctor();
+                d.setId(rs.getInt(1));
+              //  d.setFirstName(rs.getString(2));
+              //  d.setLastName(rs.getString(3));
+                d.setEmail(rs.getString(4));
+              //  d.setAddress(rs.getString(5));
+              //  d.setAge(rs.getInt(6));
+              //  d.setCin(rs.getInt(7));
+              //  d.setPassword(rs.getString(8));
+             //   d.setRoleperm(rs.getString(9));
+              //  d.setDiplome(rs.getString(10));
+              //  d.setSpecialite(rs.getString(11));
+
+                doctors.add(d);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de l'affichage des doctors: " + ex.getMessage());
+        }
+
+        return doctors;
+    }
+       
+       
+       
         public boolean supprime_reservation_cov(int id ) throws SQLException {
         String req = "DELETE FROM `Doctor` WHERE id = " + id + ";";
      String req2 = "UPDATE covoiturage SET nbrplace= nbrplace+1 WHERE id_cov =" + ";";
@@ -74,8 +108,8 @@ public class ServiceDoctor implements IServiceDoctors{
        ResultSet rs = ste.executeQuery(req); 
        while(rs.next()){
             h.setId(rs.getInt(1));
-              h.setName(rs.getString(2));
-              h.setUsername(rs.getString(3));
+              h.setFirstName(rs.getString(2));
+              h.setLastName(rs.getString(3));
               h.setEmail(rs.getString(4));
              
          }

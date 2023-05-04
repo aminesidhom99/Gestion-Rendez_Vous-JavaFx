@@ -7,66 +7,102 @@ package Entities;
 
 /**
  *
- * @author amine
+ * @author EMNA
  */
-public class User {
-    private String name,email,username ; 
-    private int id ;
+public class user {
+    private int id;
+    private String nom;
+    private String prenom;
+    private int cin;
+    private String email;
+    private String age;
+    private String mdp;
 
-    public User(String name, String email, String username, int id) {
-        this.name = name;
-        this.email = email;
-        this.username = username;
+    public user() {
+    }
+
+    public user(int id) {
         this.id = id;
     }
-
-    public User(int id) {
+    
+    public user(int id, String nom, String prenom, int cin, String email, String age, String mdp) {
         this.id = id;
-    }
-
-    public User(String name, String email, String username) {
-        this.name = name;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
         this.email = email;
-        this.username = username;
+        this.age = age;
+        this.mdp = mdp;
     }
 
-    public User() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getUsername() {
-        return username;
+    public user(String nom, String prenom, int cin, String email, String age, String mdp) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+        this.email = email;
+        this.age = age;
+        this.mdp = mdp;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public int getCin() {
+        return cin;
+    }
+
+    public void setCin(int cin) {
+        this.cin = cin;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getAge() {
+        return age;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAge(String age) {
+        this.age = age;
     }
-  
-     @Override
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    @Override
     public String toString() {
-        return  "id=" + id + ", email=" + email + ", name=" + name + ", username =" + username + '}';
+        return "user{" + "id=" + id + ", user=" + nom + " "+ prenom  + '}';
     }
+    
 }

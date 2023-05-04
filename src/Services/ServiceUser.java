@@ -7,9 +7,9 @@
  */
 package Services;
 
-import Entities.Appointment;
-import Entities.Doctor;
-import Entities.User;
+import Entity.Appointment;
+import Entity.Doctor;
+import Entity.User;
 import Utils.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,6 +39,10 @@ public class ServiceUser implements IServiceDoctors{
             System.out.println(ex);
         }
     }
+
+
+  
+
      
     public User GetUserById(int Id) {
      User h =new User();
@@ -48,8 +52,8 @@ public class ServiceUser implements IServiceDoctors{
        ResultSet rs = ste.executeQuery(req); 
        while(rs.next()){
             h.setId(rs.getInt(1));
-              h.setName(rs.getString(2));
-              h.setUsername(rs.getString(3));
+            //  h.setName(rs.getString(2));
+              h.setUserName(rs.getString(3));
               h.setEmail(rs.getString(4));
              
          }
@@ -63,6 +67,7 @@ public class ServiceUser implements IServiceDoctors{
     public List<Doctor> readAlldoctors() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+ 
 }
 
 

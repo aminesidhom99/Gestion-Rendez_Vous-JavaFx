@@ -5,7 +5,7 @@
  */
 package Services;
 
-import Entities.Appointment;
+import Entity.Appointment;
 import java.sql.SQLException;
 import java.util.List;
 

@@ -2,8 +2,8 @@
 
 package Services;
 
-import Entities.Appointment;
-import Entities.Doctor;
+import Entity.Appointment;
+import Entity.Doctor;
 import java.sql.SQLException;
 import java.util.List;
 

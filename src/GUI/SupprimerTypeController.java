@@ -6,7 +6,7 @@
 package GUI;
 import javafx.scene.control.Button;
 
-import Entities.Typeappoinment;
+import Entity.Typeappoinment;
 import Services.ServicetypeRDV;
 import java.io.IOException;
 import java.net.URL;
