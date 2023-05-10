@@ -8,10 +8,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Gui;
 
-import Entities.Typeappoinment;
-import Entities.Doctor;
+import Entity.Typeappoinment;
+import Entity.Doctor;
 import Services.ServiceDoctor;
 import Services.ServicetypeRDV;
 import java.io.IOException;
@@ -58,9 +58,7 @@ public class DoctorsController implements Initializable {
     private static int a;
     @FXML
     private ImageView Image;
-    @FXML
     private TextField tftype;
-    @FXML
     private TextField tfdesc;
    
    
@@ -77,18 +75,14 @@ public class DoctorsController implements Initializable {
       vb.getChildren().clear();
         List<Doctor> l = new ArrayList<Doctor>();
         ServiceDoctor ser = new ServiceDoctor();
-        try {
-            l = ser.readAlldoctors();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        l = ser.readAlldoctors();
         ///////////////////////////////////////////////user
         vb.setSpacing(20);
         for (Doctor d : l) {
 
         
             HBox hbox = new HBox();
-            Label label1 = new Label(d.getName());
+            Label label1 = new Label(d.getFirstName());
             Label label2 = new Label(d.getEmail());
             
           
@@ -115,7 +109,7 @@ public class DoctorsController implements Initializable {
 
   
 
-    tfdesc.setText(d.getName());
+    tfdesc.setText(d.getFirstName());
 // tfnomtype.setText(String.valueOf(d.getNomtype()));
    tftype.setText(d.getEmail());
 
@@ -183,7 +177,6 @@ vb.getChildren().add(hbox);
 
     } 
 
-    @FXML
     private void modifier(ActionEvent event) {
    
         ServicetypeRDV ser = new ServicetypeRDV();
@@ -231,7 +224,6 @@ if ( a == 0 ) {
     }
 
 
-     @FXML
     private void goajout(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/ajoutrendezVous.fxml")) ; 
         Scene scene = new Scene(root);
@@ -329,9 +321,17 @@ try {
 
     } 
 
-    @FXML
     private void goreserv(ActionEvent event) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goback(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/RendezVousAffiche.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

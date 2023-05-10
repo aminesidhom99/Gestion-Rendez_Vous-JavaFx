@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Gui;
 
-import Entities.Appointment;
+import Entity.Appointment;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -22,7 +22,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import Services.ServiceRednezVous;
+import java.io.IOException;
 import java.sql.SQLException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -48,7 +55,7 @@ public class StatController implements Initializable {
         List<Appointment> appointments = service.readAll();
         Map<String, Integer> appointmentCountsByDate = new HashMap<>();
         for (Appointment appointment : appointments) {
-            String date = appointment.getAppointment_date().toString();
+            String date = appointment.getDatefin().toString();
             if (appointmentCountsByDate.containsKey(date)) {
                 appointmentCountsByDate.put(date, appointmentCountsByDate.get(date) + 1);
             } else {
@@ -82,5 +89,16 @@ public class StatController implements Initializable {
 
     public StatController() {
         barChart = createBarChart();
+    }
+
+    @FXML
+    private void goback(ActionEvent event) throws IOException {
+     
+         Parent root = FXMLLoader.load(getClass().getResource("/GUI/RendezVousAffiche.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    
     }
 }

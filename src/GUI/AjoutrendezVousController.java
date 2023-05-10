@@ -13,9 +13,9 @@
  */
 package GUI;
 
-import Entities.Appointment;
-import Entities.Doctor;
-import Entities.Typeappoinment;
+import Entity.Appointment;
+import Entity.Doctor;
+import Entity.Typeappoinment;
 import Services.ServiceRednezVous;
 
 import java.net.URL;
@@ -30,7 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import Entities.User;
+import Entity.User;
 import Services.ServicetypeRDV;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.IOException;
@@ -98,19 +98,33 @@ public class AjoutrendezVousController implements Initializable {
 
     
     
-    @FXML
+     @FXML
      private void ajouterCov(ActionEvent event) throws SQLException {
          Typeappoinment p = new Typeappoinment();
         p.setNomtype(tftype.getText());
         p.setDescription(tfcategorie.getText());
         
         ServicetypeRDV sp =new ServicetypeRDV();
+         String nomtype = tftype.getText() ; 
+                String categorie = tfcategorie.getText() ; 
+         if (categorie.isEmpty() || nomtype.isEmpty()   ) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("s'il vous plaît remplir tous les champs !");
+            alert.showAndWait();
+        } else  {
         sp.ajouter_reservation_cov(p);
     }
-    
+     }
   
    
-    
+     @FXML
+    private void goback(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/AffichageType.fxml")) ; 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     
     
     

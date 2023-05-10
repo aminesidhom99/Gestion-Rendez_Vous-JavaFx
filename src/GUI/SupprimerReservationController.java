@@ -1,8 +1,8 @@
 
-package GUI;
+package Gui;
 import javafx.scene.control.Button;
-import Entities.Appointment;
-import Entities.Typeappoinment;
+import Entity.Appointment;
+import Entity.Typeappoinment;
 import Services.ServicetypeRDV;
 import Services.ServiceRednezVous;
 import java.io.IOException;
@@ -70,8 +70,8 @@ public class SupprimerReservationController implements Initializable {
 
         
             HBox hbox = new HBox();
-            Label label1 = new Label(d.getUser().getName());
-            Label label2 = new Label(d.getDoctor().getName());
+            Label label1 = new Label(d.getUser().getUserName());
+            Label label2 = new Label(d.getDoctor().getFirstName());
             Label label3 = new Label(d.getAppointment_date().toString());
             Label label4 = new Label(d.getDatefin().toString());
             
@@ -104,7 +104,7 @@ button.setOnAction(event -> {
                      
                      //////
                      //d.getTelephone()
-                     sendSms( "24076282","salut"  +  "vous avez une nouvelle reservation sur votre covoiturage") ;
+                     sendSms( "24076282","salut"  +d.getDoctor().getFirstName() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
                      /////////////
                      JOptionPane.showMessageDialog(null, "covoiturage supprimé");
                  } catch (SQLException ex) {
@@ -141,8 +141,8 @@ button.setOnAction(event -> {
 
         
             HBox hbox = new HBox();
-           Label label1 = new Label(d.getUser().getName());
-            Label label2 = new Label(d.getDoctor().getName());
+           Label label1 = new Label(d.getUser().getUserName());
+            Label label2 = new Label(d.getDoctor().getFirstName());
             Label label3 = new Label(d.getAppointment_date().toString());
             Label label4 = new Label(d.getDatefin().toString());
             
@@ -197,7 +197,7 @@ try {
     
     @FXML
     private void goaffi(ActionEvent event) throws IOException {
-           Parent root = FXMLLoader.load(getClass().getResource("/GUI/RendezVousAffiche.fxml")) ; 
+           Parent root = FXMLLoader.load(getClass().getResource("/Gui/RendezVousAffiche.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -206,7 +206,7 @@ try {
 
     @FXML
     private void goajout(ActionEvent event) throws IOException {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/ajoutrendezVous.fxml")) ; 
+            Parent root = FXMLLoader.load(getClass().getResource("/Gui/ajoutrendezVous.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -214,7 +214,7 @@ try {
     }
  @FXML
     private void gomodif(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("/GUI/UpdateRDV.fxml")) ; 
+         Parent root = FXMLLoader.load(getClass().getResource("/Gui/UpdateRDV.fxml")) ; 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
