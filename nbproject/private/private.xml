@@ -3,25 +3,35 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entity/User.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/SignInController.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/FXML1post.fxml</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/ABCController.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entities/Appointment.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entities/User.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entities/Categorie.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Util/MyDB.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/StatController.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/likeStatController.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Service/ServicePost.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entity/Comment.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/FXML1postController.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entity/Appointment.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entities/Doctor.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Entity/Post.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/Service/ServiceComment.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/LikePostStatController.java</file>
-            <file>file:/C:/Users/khalil/Desktop/PIdevJava-Integration/src/GUI/ChoixBoxController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/AjoutMedController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/Login.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Service/ServiceComment.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entities/Medicament.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/AffichageTypeController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Services/ServiceReclamation.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/CatController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/ChoixBoxController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/MedController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entities/Appointment.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Test/Main.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Service/ServicePost.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/AjoutCatController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Services/ServiceTypeRec.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Services/ServiceDoctor.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entity/User.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entities/Categorie.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entity/Doctor.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entities/User.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Services/ServiceMedicament.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Services/ServiceRednezVous.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/edu/utils/MyConnection.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Utils/DataSource.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/ModifierMedController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Services/ServiceCategorie.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Service/Crud.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/GUI/SignInController.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Entity/Appointment.java</file>
+            <file>file:/C:/Users/amine/Bureau/PIdevJava-Integration/src/Util/MyDB.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Entities.Categorie;
 import Entities.Medicament;
 import Services.ServiceCategorie;
 import Services.ServiceMedicament;
@@ -82,10 +83,18 @@ public class ModifierMedController implements Initializable {
         String description=d.getText();
         String prix= p.getText();
         System.out.println(prix);
-        String Categorie=c.getValue();
+         Categorie caaa = new Categorie();
+       String categorie=c.getValue();
+       List<Categorie> lc = sc.afficher();
+       for (Categorie a:lc){
+           if (categorie.equals(a.getNom())){
+               caaa=a;
+               break;
+           }
+       }
         ServiceMedicament sm = new ServiceMedicament();
         float prixf=Float.parseFloat(prix);
-        Medicament m = new Medicament(nom,Categorie,description,image,prixf);
+        Medicament m = new Medicament(nom,caaa,description,image,prixf);
         sm.modifier(m);
         content.getChildren().removeAll(content.getChildren()); 
             try {

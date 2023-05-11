@@ -120,16 +120,18 @@ public class MedController implements Initializable {
             });
         T.setItems(medicamentsObservableList);
       int im=medicamentsList.size();
+        System.out.println(im);
         List<String> lc = sc.getallnames();
         int ic= lc.size();
         nbrc.setText("Nombre de categories : "+ic);
         nbrm.setText("Nombre de medicaments :"+im);
         List<Stats> st = new ArrayList<>();
+        if (im>0){
         for(String n : lc){
         int i =0;
         for(Medicament m: medicamentsList){
-        String cm= m.getCategorie();   
-        if (n.equals(cm)){
+        Categorie c= m.getCategorie();   
+        if (n.equals(c.getNom())){;
             i++;
         }
         }
@@ -142,6 +144,7 @@ public class MedController implements Initializable {
          pieChartData.add(new PieChart.Data(stat.getNom(), stat.getNbr()));
       }
         ch.setData(pieChartData);
+        }
          }        
    @FXML
     public void chercher(){
@@ -200,8 +203,8 @@ public class MedController implements Initializable {
         for(String n : lc){
         int j =0;
         for(Medicament m: medicamentsList){
-        String cm= m.getCategorie();   
-        if (n.equals(cm)){
+        Categorie cm= m.getCategorie();   
+        if (n.equals(cm.getNom())){;
             j++;
         }
         }
@@ -275,4 +278,3 @@ public class MedController implements Initializable {
     return imageView;
     }
     }
-                

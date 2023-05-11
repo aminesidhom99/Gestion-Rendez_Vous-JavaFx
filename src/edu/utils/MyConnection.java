@@ -9,7 +9,7 @@ public class MyConnection {
 
     private final String USER = "root";
     private final String PWD = "";
-    private final String URL = "jdbc:mysql://localhost:3306/integration";
+    private final String URL = "jdbc:mysql://localhost:3306/piprojectFINALwebJava";
 
     public Connection cnx;
     private static MyConnection instance;

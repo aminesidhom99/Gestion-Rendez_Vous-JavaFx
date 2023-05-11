@@ -6,6 +6,7 @@
 package Services;
 
 import Entities.Categorie;
+import Util.MyDB;
 import Utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,16 +21,17 @@ import java.util.List;
  * @author MSI
  */
 public class ServiceCategorie implements IService<Categorie> {
-Connection cnx;
-    
+
+       Connection con=DataSource.getInstance().getConnection();
     public  ServiceCategorie(){
-        cnx =DataSource.getInstance().getConnection();
+        Connection con=DataSource.getInstance().getConnection();
     }
     @Override
     public void ajouter(Categorie t) {
          try {
-            String qry = "INSERT INTO `categorie`( `nom`) VALUES (?)";
-            PreparedStatement ps = cnx.prepareStatement(qry);
+            String qry = "INSERT INTO `categorie`(`nom`) VALUES (?);";
+
+            PreparedStatement ps = con.prepareStatement(qry);
             ps.setString(1, t.getNom());
             ps.executeUpdate();
             System.out.println("haithem 9al jawek behi ");
@@ -46,9 +48,9 @@ Connection cnx;
         List<Categorie> categories = new ArrayList<>();
          
         try {
-             String req ="SELECT * FROM `categorie` ";
+             String req ="SELECT * FROM categorie ";
             
-            Statement st = cnx.createStatement();
+            Statement st = con.createStatement();
             ResultSet rs= st.executeQuery(req);
             while (rs.next()){
                 Categorie c = new Categorie();
@@ -66,8 +68,8 @@ Connection cnx;
     @Override
     public void modifier(Categorie t) {
         try {
-           String req = " UPDATE `categorie` SET `id` = '" +t.getId()+ "', `Nom` = '" +t.getNom() + "' WHERE `categorie`.`id` = " + t.getId();
-            Statement st = cnx.createStatement();
+           String req = " UPDATE categorie SET id = '" +t.getId()+ "', Nom = '" +t.getNom() + "' WHERE categorie.`id` = " + t.getId();
+            Statement st = con.createStatement();
             st.executeUpdate(req);
             System.out.println("Categorie updated!");
         } catch (SQLException ex) {
@@ -75,11 +77,14 @@ Connection cnx;
         }
     }
 
+    
+  
+           
     @Override
     public void supprimer(int id) {
          try {
-            String req = "DELETE FROM `categorie` WHERE id = " + id;
-            Statement st = cnx.createStatement();
+            String req = "DELETE FROM categorie WHERE id = " + id;
+            Statement st = con.createStatement();
             st.executeUpdate(req);
             System.out.println("Categorie deleted !");
         } catch (SQLException ex) {
@@ -90,9 +95,9 @@ Connection cnx;
         List<String> categories = new ArrayList<>();
          
         try {
-             String req ="SELECT nom FROM `categorie` ";
+             String req ="SELECT nom FROM categorie ";
        
-            Statement st = cnx.createStatement();
+            Statement st = con.createStatement();
             ResultSet rs= st.executeQuery(req);
             while (rs.next()){
                 String n=(rs.getString("nom"));
@@ -103,5 +108,21 @@ Connection cnx;
         }
 
    return categories;
+    }
+    public Categorie getbyid(int id){
+    Categorie c = new Categorie();
+     try {
+             String req ="SELECT * FROM categorie where id = '"+id+"%' ";
+            
+            Statement st = con.createStatement();
+            ResultSet rs= st.executeQuery(req);
+            while (rs.next()){     
+                c.setId(rs.getInt(1));
+                c.setNom(rs.getString(2));
+            }
+         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    return c;
     }
 }

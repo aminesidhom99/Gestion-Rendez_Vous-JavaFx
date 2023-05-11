@@ -85,7 +85,7 @@ public class AjoutMedController implements Initializable {
       List<String> lc = sc.getallnames();
       c.setItems(FXCollections.observableArrayList(lc));
     }    
-
+ServiceCategorie sc = new ServiceCategorie();
     @FXML
     private void ajouter(ActionEvent event) {
         String image=path.getText();
@@ -93,10 +93,18 @@ public class AjoutMedController implements Initializable {
         String description=d.getText();
         String prix= p.getText();
         System.out.println(prix);
-        String Categorie=c.getValue();
+       Categorie caaa = new Categorie();
+       String categorie=c.getValue();
+       List<Categorie> lc = sc.afficher();
+       for (Categorie a:lc){
+           if (categorie.equals(a.getNom())){
+               caaa=a;
+               break;
+           }
+       }
         ServiceMedicament sm = new ServiceMedicament();
         float prixf=Float.parseFloat(prix);
-        Medicament m = new Medicament(nom,Categorie,description,image,prixf);
+        Medicament m = new Medicament(nom,caaa,description,image,prixf);
         sm.ajouter(m);
         content.getChildren().removeAll(content.getChildren());
         try {
@@ -119,7 +127,7 @@ public class AjoutMedController implements Initializable {
       void addimgcours(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-           new ExtensionFilter("Image Files", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+          new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         selectedFile = fileChooser.showOpenDialog(Image.getScene().getWindow());
         if (selectedFile != null) {
             saveImage(selectedFile);
@@ -144,9 +152,3 @@ public class AjoutMedController implements Initializable {
 }
     }
 }
-
-
-
-
-
-

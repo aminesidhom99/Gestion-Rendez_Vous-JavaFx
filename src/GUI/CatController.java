@@ -6,9 +6,12 @@
 package GUI;
 
 import Entities.Categorie;
+import Entities.Medicament;
+import Entities.Stats;
 import Services.ServiceCategorie;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,8 +22,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -74,6 +79,26 @@ public class CatController implements Initializable {
             
         }
     }
+     
+    @FXML
+    private void supprimer(ActionEvent event) {
+        Categorie selectedItem = t.getSelectionModel().getSelectedItem();
+ ServiceCategorie sc = new ServiceCategorie();
+    if (selectedItem != null) {
+        
+       String value = n.getCellData(selectedItem);
+       List<Categorie> lm = sc.afficher();
+       int i=0;
+       for(Categorie m:lm){
+           String nom=m.getNom();
+        if(value.equals(nom)){
+            i = m.getId();
+            break;
+        }
+       }
+        sc.supprimer(i);
+    }
+  }
     }    
     
 

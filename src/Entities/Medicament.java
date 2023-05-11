@@ -11,13 +11,14 @@ package Entities;
  */
 public class Medicament {
     private int id;
-    private String nom,categorie,description,image ;
+    private String nom,description,image ;
+    private Categorie categorie;
     private float prix;
 
     public Medicament() {
     }
 
-    public Medicament(String nom, String categorie, String description, String image, float prix) {
+    public Medicament(String nom, Categorie categorie, String description, String image, float prix) {
         this.nom = nom;
         this.categorie = categorie;
         this.description = description;
@@ -41,11 +42,11 @@ public class Medicament {
         this.nom = nom;
     }
 
-    public String getCategorie() {
+    public Categorie getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 

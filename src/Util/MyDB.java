@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author khalil
  */
 public class MyDB {
-      final String url="jdbc:mysql://localhost:3306/integwebjava";
+      final String url="jdbc:mysql://localhost:3306/piprojectFINALwebJava";
     
     final String Username ="root";
     
